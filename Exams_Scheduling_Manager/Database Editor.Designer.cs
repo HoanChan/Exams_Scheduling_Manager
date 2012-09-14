@@ -35,8 +35,10 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.ucSubjects2 = new Exams_Scheduling_Manager.ucSubjects();
+            this.ucSubjects3 = new Exams_Scheduling_Manager.ucSubjects();
             this.tabTable.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,6 +77,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.ucSubjects3);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -112,6 +115,14 @@
             this.ucSubjects2.Size = new System.Drawing.Size(638, 466);
             this.ucSubjects2.TabIndex = 0;
             // 
+            // ucSubjects3
+            // 
+            this.ucSubjects3.BackColor = System.Drawing.Color.DarkRed;
+            this.ucSubjects3.Location = new System.Drawing.Point(22, 16);
+            this.ucSubjects3.Name = "ucSubjects3";
+            this.ucSubjects3.Size = new System.Drawing.Size(638, 466);
+            this.ucSubjects3.TabIndex = 0;
+            // 
             // frmDatabaseEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -123,6 +134,7 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmDatabaseEditor_FormClosed);
             this.tabTable.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -138,6 +150,7 @@
         private ucSubjects ucSubjects1;
         private System.Windows.Forms.Button button1;
         private ucSubjects ucSubjects2;
+        private ucSubjects ucSubjects3;
     }
 }
 
