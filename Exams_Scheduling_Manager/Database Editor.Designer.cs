@@ -33,7 +33,9 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.ucSubjects1 = new Exams_Scheduling_Manager.ucSubjects();
             this.tabTable.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabTable
@@ -81,6 +83,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.ucSubjects1);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
@@ -88,6 +91,14 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Môn học";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // ucSubjects1
+            // 
+            this.ucSubjects1.BackColor = System.Drawing.Color.Gray;
+            this.ucSubjects1.Location = new System.Drawing.Point(8, 9);
+            this.ucSubjects1.Name = "ucSubjects1";
+            this.ucSubjects1.Size = new System.Drawing.Size(638, 466);
+            this.ucSubjects1.TabIndex = 0;
             // 
             // frmDatabaseEditor
             // 
@@ -99,6 +110,7 @@
             this.Text = "Chỉnh sửa cơ sở dữ liệu";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmDatabaseEditor_FormClosed);
             this.tabTable.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -110,6 +122,7 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
+        private ucSubjects ucSubjects1;
     }
 }
 
