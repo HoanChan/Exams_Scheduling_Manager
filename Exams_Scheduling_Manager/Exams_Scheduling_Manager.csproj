@@ -59,8 +59,15 @@
     <Compile Include="frmConnection.designer.cs">
       <DependentUpon>frmConnection.cs</DependentUpon>
     </Compile>
+    <Compile Include="Global.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ucSubjects.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucSubjects.Designer.cs">
+      <DependentUpon>ucSubjects.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Database Editor.resx">
       <DependentUpon>Database Editor.cs</DependentUpon>
     </EmbeddedResource>
@@ -76,6 +83,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ucSubjects.resx">
+      <DependentUpon>ucSubjects.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
