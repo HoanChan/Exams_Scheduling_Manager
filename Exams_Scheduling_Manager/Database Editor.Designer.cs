@@ -30,12 +30,14 @@
         {
             this.tabTable = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
+            this.ucSubjects2 = new Exams_Scheduling_Manager.ucSubjects();
             this.tabTable.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabTable
@@ -62,6 +64,15 @@
             this.tabPage1.Text = "Sinh viên";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(321, 153);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Đăng Nhập";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // tabPage2
             // 
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -84,6 +95,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.ucSubjects2);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
@@ -92,14 +104,13 @@
             this.tabPage4.Text = "Môn học";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // ucSubjects2
             // 
-            this.button1.Location = new System.Drawing.Point(321, 153);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Đăng Nhập";
-            this.button1.UseVisualStyleBackColor = true;
+            this.ucSubjects2.BackColor = System.Drawing.Color.DimGray;
+            this.ucSubjects2.Location = new System.Drawing.Point(8, 4);
+            this.ucSubjects2.Name = "ucSubjects2";
+            this.ucSubjects2.Size = new System.Drawing.Size(638, 466);
+            this.ucSubjects2.TabIndex = 0;
             // 
             // frmDatabaseEditor
             // 
@@ -112,6 +123,7 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmDatabaseEditor_FormClosed);
             this.tabTable.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -125,6 +137,7 @@
         private System.Windows.Forms.TabPage tabPage4;
         private ucSubjects ucSubjects1;
         private System.Windows.Forms.Button button1;
+        private ucSubjects ucSubjects2;
     }
 }
 
