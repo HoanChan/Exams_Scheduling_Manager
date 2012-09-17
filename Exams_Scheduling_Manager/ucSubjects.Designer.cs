@@ -1,4 +1,4 @@
-﻿namespace Exams_Scheduling_Manager
+namespace Exams_Scheduling_Manager
 {
     partial class ucSubjects
     {
