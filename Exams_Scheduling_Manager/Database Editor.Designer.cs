@@ -34,6 +34,7 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.ucSubjects2 = new Exams_Scheduling_Manager.ucSubjects();
+            this.ucStudents2 = new Exams_Scheduling_Manager.ucStudents();
             this.tabTable.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.SuspendLayout();
@@ -53,6 +54,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.ucStudents2);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -73,6 +75,7 @@
             // 
             // tabPage3
             // 
+            
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -99,6 +102,15 @@
             this.ucSubjects2.Name = "ucSubjects2";
             this.ucSubjects2.Size = new System.Drawing.Size(974, 472);
             this.ucSubjects2.TabIndex = 0;
+            //
+            // ucStudents2
+            // 
+            this.ucStudents2.BackColor = System.Drawing.Color.DimGray;
+            this.ucStudents2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucStudents2.Location = new System.Drawing.Point(3, 3);
+            this.ucStudents2.Name = "ucSubjects2";
+            this.ucStudents2.Size = new System.Drawing.Size(974, 472);
+            this.ucStudents2.TabIndex = 0;
             // 
             // frmDatabaseEditor
             // 
@@ -121,9 +133,10 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
-        private ucSubjects ucSubjects1;
+      //  private ucSubjects ucSubjects1;
         private System.Windows.Forms.TabPage tabPage4;
         private ucSubjects ucSubjects2;
+        private ucStudents ucStudents2;
     }
 }
 

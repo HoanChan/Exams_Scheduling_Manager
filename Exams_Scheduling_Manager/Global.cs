@@ -23,6 +23,7 @@ namespace Exams_Scheduling_Manager
                 return false;
             }
         }
+
         public static void FillTable(String Query, DataTable dTable)
         {
             //try

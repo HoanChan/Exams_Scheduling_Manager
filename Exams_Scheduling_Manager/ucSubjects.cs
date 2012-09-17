@@ -43,9 +43,9 @@ namespace Exams_Scheduling_Manager
         {
             if (cboFaculty.Enabled)
             {
-                ShowOnGirdView("SELECT [MaMonHoc],[TenMonHoc],[TCLyThuyet],[TCThucHanh],[MonThiNghiem],[KhoaXepLich],[BoMonQL],[GhiChu]"
+                ShowOnGirdView("SELECT [MaMonHoc],[TenMonHoc],[TCLyThuyet],[TCThucHanh],[MonThiNghiem],                                         [KhoaXepLich],[BoMonQL],[GhiChu]"
                                 + " FROM monhoc, khoa, bomon"
-                                + " WHERE MaKhoa = " + ((SQLItem)cboFaculty.SelectedItem).ID + " and MaKhoa = KhoaQL and BoMonQL = MaBoMon");
+                                + " WHERE MaKhoa = " + ((SQLItem)cboFaculty.SelectedItem).ID + " and MaKhoa                                 = KhoaQL and BoMonQL = MaBoMon");
             }
             else
             {
