@@ -20,20 +20,23 @@ namespace Exams_Scheduling_Manager
 
         private void ucSubjects_Load(object sender, EventArgs e)
         {
-            DataTable dTable1 = new DataTable();
-            Global.FillTable("Select * From BoMon", dTable1);
-            foreach (DataRow dRow in dTable1.Rows)
+            if (!DesignMode) // Không phải đang trong chế độ Design
             {
-                cboSubject.Items.Add(new SQLItem(dRow["MaBoMon"], dRow["TenBoMon"], dRow["KhoaQL"]));
-            }
-            cboSubject.Items.Add(new SQLItem(null, "?"));
-            cboSubject.SelectedIndex = 0;
+                DataTable dTable1 = new DataTable();
+                Global.FillTable("Select * From BoMon", dTable1);
+                foreach (DataRow dRow in dTable1.Rows)
+                {
+                    cboSubject.Items.Add(new SQLItem(dRow["MaBoMon"], dRow["TenBoMon"], dRow["KhoaQL"]));
+                }
+                cboSubject.Items.Add(new SQLItem(null, "?"));
+                cboSubject.SelectedIndex = 0;
 
-            DataTable dTable2 = new DataTable();
-            Global.FillTable("Select * From Khoa", dTable2);
-            foreach (DataRow dRow in dTable2.Rows)
-            {
-                cboFaculty.Items.Add(new SQLItem(dRow["MaKhoa"], dRow["TenKhoa"]));
+                DataTable dTable2 = new DataTable();
+                Global.FillTable("Select * From Khoa", dTable2);
+                foreach (DataRow dRow in dTable2.Rows)
+                {
+                    cboFaculty.Items.Add(new SQLItem(dRow["MaKhoa"], dRow["TenKhoa"]));
+                }
             }
         }
         private void btnShow_Click(object sender, EventArgs e)

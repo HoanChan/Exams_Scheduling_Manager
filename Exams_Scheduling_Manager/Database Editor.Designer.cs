@@ -94,7 +94,6 @@
             // 
             // ucSubjects2
             // 
-            this.ucSubjects2.BackColor = System.Drawing.Color.DimGray;
             this.ucSubjects2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucSubjects2.Location = new System.Drawing.Point(3, 3);
             this.ucSubjects2.Name = "ucSubjects2";
