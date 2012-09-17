@@ -28,40 +28,14 @@ namespace Exams_Scheduling_Manager
             }
             cboClass.SelectedIndex = 0;
         }
-
         
-        private class SQLItem
-        {
-            public object ID;
-            public object CVHT;
-            public object Info;
-            public SQLItem(object _ID,object _CVHT)
-            {
-                ID = _ID;
-                CVHT = _CVHT;
-                Info = null;
-            }
-            public SQLItem(object _ID, object _CVHT, Object _Info)
-            {
-                ID = _ID;
-                CVHT = _CVHT;
-                Info = _Info;
-            }
-
-            public override string ToString()
-            {
-                return CVHT.ToString();
-            }
-        }
-
         private void btnShow_Click(object sender, EventArgs e)
         {
-            ShowOnGirdView("select * from sinhvien where Lop = " + cboClass.SelectedItem.ToString());
+            ShowOnGirdView("Select * From sinhvien Where Lop = " + cboClass.SelectedItem.ToString());
             dataGridView.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
         }
         
-
-        private void ShowOnGirdView(String Query)
+                private void ShowOnGirdView(String Query)
         {
             //Create a DataTable to hold the query results.
             DataTable dTable = new DataTable();
