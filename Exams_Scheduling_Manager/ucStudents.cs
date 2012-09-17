@@ -31,7 +31,7 @@ namespace Exams_Scheduling_Manager
         
         private void btnShow_Click(object sender, EventArgs e)
         {
-            ShowOnGirdView("Select * From sinhvien Where Lop = '" + cboClass.SelectedItem.ToString()+"'");
+            ShowOnGirdView("Select [MaSinhVien],[Ho],[Ten],[Phai],[NgaySinh] From sinhvien Where Lop = '" + cboClass.SelectedItem.ToString() + "'");
             dataGridView.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
         }
         
