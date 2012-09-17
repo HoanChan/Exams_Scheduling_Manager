@@ -11,11 +11,12 @@ namespace Exams_Scheduling_Manager
 {
     public partial class frmDatabaseEditor : Form
     {
-        DATABASE dbViewer;
+        //DATABASE dbViewer;
         public frmDatabaseEditor(String ConnectionString)
         {
             InitializeComponent();
-            dbViewer = new DATABASE(ConnectionString);
+            //dbViewer = new DATABASE(ConnectionString);
+            Global.Connect(ConnectionString);
         }
 
         private void frmDatabaseEditor_FormClosed(object sender, FormClosedEventArgs e)

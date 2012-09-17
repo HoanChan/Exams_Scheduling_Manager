@@ -28,101 +28,112 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.panel = new System.Windows.Forms.Panel();
+            this.btnShow = new System.Windows.Forms.Button();
+            this.cboSubject = new System.Windows.Forms.ComboBox();
+            this.cboFaculty = new System.Windows.Forms.ComboBox();
+            this.lblSubject = new System.Windows.Forms.Label();
+            this.lblFaculty = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            this.panel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // textBox1
+            // dataGridView
             // 
-            this.textBox1.Location = new System.Drawing.Point(166, 37);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(235, 20);
-            this.textBox1.TabIndex = 0;
+            this.dataGridView.AllowUserToOrderColumns = true;
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Dock = System.Windows.Forms.DockStyle.Top;
+            this.dataGridView.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.Size = new System.Drawing.Size(638, 391);
+            this.dataGridView.TabIndex = 0;
             // 
-            // textBox2
+            // panel
             // 
-            this.textBox2.Location = new System.Drawing.Point(166, 63);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(235, 20);
-            this.textBox2.TabIndex = 1;
+            this.panel.Controls.Add(this.lblFaculty);
+            this.panel.Controls.Add(this.lblSubject);
+            this.panel.Controls.Add(this.cboFaculty);
+            this.panel.Controls.Add(this.cboSubject);
+            this.panel.Controls.Add(this.btnShow);
+            this.panel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel.Location = new System.Drawing.Point(0, 397);
+            this.panel.Name = "panel";
+            this.panel.Size = new System.Drawing.Size(638, 69);
+            this.panel.TabIndex = 1;
             // 
-            // textBox3
+            // btnShow
             // 
-            this.textBox3.Location = new System.Drawing.Point(166, 115);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(235, 20);
-            this.textBox3.TabIndex = 3;
+            this.btnShow.Location = new System.Drawing.Point(539, 21);
+            this.btnShow.Name = "btnShow";
+            this.btnShow.Size = new System.Drawing.Size(75, 23);
+            this.btnShow.TabIndex = 0;
+            this.btnShow.Text = "Hiển thị";
+            this.btnShow.UseVisualStyleBackColor = true;
+            this.btnShow.Click += new System.EventHandler(this.btnShow_Click);
             // 
-            // textBox4
+            // cboSubject
             // 
-            this.textBox4.Location = new System.Drawing.Point(166, 89);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(235, 20);
-            this.textBox4.TabIndex = 2;
+            this.cboSubject.FormattingEnabled = true;
+            this.cboSubject.Location = new System.Drawing.Point(70, 23);
+            this.cboSubject.Name = "cboSubject";
+            this.cboSubject.Size = new System.Drawing.Size(189, 21);
+            this.cboSubject.TabIndex = 1;
+            this.cboSubject.SelectedIndexChanged += new System.EventHandler(this.cboSubject_SelectedIndexChanged);
             // 
-            // textBox5
+            // cboFaculty
             // 
-            this.textBox5.Location = new System.Drawing.Point(166, 167);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(235, 20);
-            this.textBox5.TabIndex = 5;
+            this.cboFaculty.Enabled = false;
+            this.cboFaculty.FormattingEnabled = true;
+            this.cboFaculty.Location = new System.Drawing.Point(330, 21);
+            this.cboFaculty.Name = "cboFaculty";
+            this.cboFaculty.Size = new System.Drawing.Size(169, 21);
+            this.cboFaculty.TabIndex = 2;
             // 
-            // textBox6
+            // lblSubject
             // 
-            this.textBox6.Location = new System.Drawing.Point(166, 141);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(235, 20);
-            this.textBox6.TabIndex = 4;
+            this.lblSubject.AutoSize = true;
+            this.lblSubject.Location = new System.Drawing.Point(18, 26);
+            this.lblSubject.Name = "lblSubject";
+            this.lblSubject.Size = new System.Drawing.Size(46, 13);
+            this.lblSubject.TabIndex = 3;
+            this.lblSubject.Text = "Bộ môn:";
             // 
-            // textBox7
+            // lblFaculty
             // 
-            this.textBox7.Location = new System.Drawing.Point(166, 219);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(235, 20);
-            this.textBox7.TabIndex = 7;
-            // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(166, 193);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(235, 20);
-            this.textBox8.TabIndex = 6;
+            this.lblFaculty.AutoSize = true;
+            this.lblFaculty.Location = new System.Drawing.Point(275, 26);
+            this.lblFaculty.Name = "lblFaculty";
+            this.lblFaculty.Size = new System.Drawing.Size(35, 13);
+            this.lblFaculty.TabIndex = 4;
+            this.lblFaculty.Text = "Khoa:";
             // 
             // ucSubjects
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.panel);
+            this.Controls.Add(this.dataGridView);
             this.Name = "ucSubjects";
             this.Size = new System.Drawing.Size(638, 466);
+            this.Load += new System.EventHandler(this.ucSubjects_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+            this.panel.ResumeLayout(false);
+            this.panel.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.Panel panel;
+        private System.Windows.Forms.Button btnShow;
+        private System.Windows.Forms.Label lblFaculty;
+        private System.Windows.Forms.Label lblSubject;
+        private System.Windows.Forms.ComboBox cboFaculty;
+        private System.Windows.Forms.ComboBox cboSubject;
+
 
     }
 }
