@@ -95,6 +95,19 @@ namespace Exams_Scheduling_Manager
             return sqlCommand.ExecuteNonQuery();
         }
         /// <summary>
+        /// Chạy dòng lệnh, trả về giá trị trong ô đầu tiên trong bảng (ô ở dòng 1 cột 1)
+        /// </summary>
+        /// <param name="Query">Lệnh cần chạy</param>
+        /// <returns>Giá trị của ô</returns>
+        public static object RunScalar(string Query)
+        {
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand.Connection = SQLConnection;
+            sqlCommand.CommandText = Query;
+            return sqlCommand.ExecuteScalar();
+        }
+
+        /// <summary>
         /// Chạy dòng lệnh trả về một bảng
         /// </summary>
         /// <param name="Query">Lệnh cần chạy</param>

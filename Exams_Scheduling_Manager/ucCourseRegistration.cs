@@ -15,7 +15,11 @@ namespace Exams_Scheduling_Manager
         {
             InitializeComponent();
         }
-
+        public void ShowStudent(String StudentID)
+        {
+            txtStudentID.Text = StudentID;
+            btnShow.PerformClick();
+        }
         private void btnShow_Click(object sender, EventArgs e)
         {
             //if (Global.RunNonQuery("select * from pdkmh where MaSinhVien = '" + txtStudentID.Text + "'") != -1)

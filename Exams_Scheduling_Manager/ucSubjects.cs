@@ -108,7 +108,7 @@ namespace Exams_Scheduling_Manager
                     mySqlCommand.Parameters.AddWithValue("@BoMonQL", ((SQLItem)cboManagerSubject.SelectedItem).ID);
                     mySqlCommand.Parameters.AddWithValue("@GhiChu", (txtInfo.Text.Length == 0 ? DBNull.Value : (object)txtInfo.Text));
                     mySqlCommand.Parameters.AddWithValue("@MaMonHocCu", dataGridView.SelectedRows[0].Cells["MaMonHoc"].Value.ToString());
-                    if (mySqlCommand.ExecuteNonQuery() != -1)
+                    if (mySqlCommand.ExecuteNonQuery() > 0)
                     {
                         MessageBox.Show("Sửa đổi thành công", "Thông báo");
                         btnShow.PerformClick();
@@ -137,7 +137,7 @@ namespace Exams_Scheduling_Manager
                     mySqlCommand.Parameters.AddWithValue("@BoMonQL", ((SQLItem)cboManagerSubject.SelectedItem).ID);
                     mySqlCommand.Parameters.AddWithValue("@GhiChu", (txtInfo.Text.Length == 0 ? DBNull.Value : (object)txtInfo.Text));
 
-                    if (mySqlCommand.ExecuteNonQuery() != -1)
+                    if (mySqlCommand.ExecuteNonQuery() > 0)
                     {
                         MessageBox.Show("Thêm mới thành công", "Thông báo");
                         btnShow.PerformClick();
@@ -188,7 +188,7 @@ namespace Exams_Scheduling_Manager
         private Boolean CheckAddModeInfo()
         {
             Boolean Ok = true;
-            if (Global.RunNonQuery("select * from monhoc where MaMonHoc = " + txtID.Text) != -1)
+            if (Global.RunScalar("SELECT MaMonHoc FROM MonHoc WHERE MaMonHoc = '" + txtID.Text + "'") != null)
             {
                 errorProvider.SetError(txtID, "Đã được sử dụng, đề nghị nhập cái khác");
                 Ok = false;
@@ -204,7 +204,7 @@ namespace Exams_Scheduling_Manager
             Boolean Ok = true;
             if (txtID.Text != dataGridView.SelectedRows[0].Cells["MaMonHoc"].Value.ToString())
             {
-                if (Global.RunNonQuery("select * from monhoc where MaMonHoc = " + txtID.Text) != -1)
+                if (Global.RunScalar("SELECT MaMonHoc FROM MonHoc WHERE MaMonHoc = '" + txtID.Text + "'") != null)
                 {
                     errorProvider.SetError(txtID, "Đã được sử dụng, đề nghị nhập cái khác");
                     Ok = false;
@@ -233,7 +233,7 @@ namespace Exams_Scheduling_Manager
                 mySqlCommand.CommandText = "DELETE FROM MonHoc WHERE MaMonHoc = @MaMonHoc";
                 mySqlCommand.Parameters.AddWithValue("@MaMonHoc", dataGridView.SelectedRows[0].Cells["MaMonHoc"].Value.ToString());
 
-                if (mySqlCommand.ExecuteNonQuery() != -1)
+                if (mySqlCommand.ExecuteNonQuery() > 0)
                 {
                     MessageBox.Show("Xóa thành công", "Thông báo");
                     btnShow.PerformClick();
