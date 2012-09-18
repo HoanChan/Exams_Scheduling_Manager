@@ -43,7 +43,6 @@ namespace Exams_Scheduling_Manager
             pnlEdit.Left = (Width - pnlEdit.Width) / 2;
             pnlEdit.Top = (dataGridView.Height - pnlEdit.Height) / 2;
         }
-
         private void btnShow_Click(object sender, EventArgs e)
         {
             if (cboFaculty.Enabled)
@@ -57,7 +56,6 @@ namespace Exams_Scheduling_Manager
                 Global.ShowOnGirdView(dataGridView, "Select * from monhoc where BoMonQL = " + ((SQLItem)cboSubject.SelectedItem).ID);
             }
         }
-
         private void cboSubject_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (((SQLItem)cboSubject.SelectedItem).ID == null)
@@ -91,7 +89,6 @@ namespace Exams_Scheduling_Manager
             pnlEdit.Visible = true;
             pnlCommands.Enabled = false;
         }
-
         private void btnOK_Click(object sender, EventArgs e)
         {
             if (IsModifyMode)
@@ -224,7 +221,6 @@ namespace Exams_Scheduling_Manager
             pnlEdit.Visible = false;
             pnlCommands.Visible = true;
         }
-
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 0)
@@ -248,7 +244,6 @@ namespace Exams_Scheduling_Manager
                 }
             }
         }
-
         private void btnModify_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 0)

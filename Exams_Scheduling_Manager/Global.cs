@@ -50,20 +50,13 @@ namespace Exams_Scheduling_Manager
 
         public static void FillTable(String Query, DataTable dTable)
         {
-            //try
-            //{
-                SqlCommand sqlCommand = new SqlCommand();
-                sqlCommand = SQLConnection.CreateCommand();
-                sqlCommand.CommandText = Query;
-                SqlDataAdapter sda = new SqlDataAdapter(sqlCommand.CommandText, SQLConnection);
-                SqlCommandBuilder scb = new SqlCommandBuilder(sda);
-                //Fill the DataTable.
-                sda.Fill(dTable);
-            //}
-            //catch (Exception)
-            //{
-
-            //}
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand = SQLConnection.CreateCommand();
+            sqlCommand.CommandText = Query;
+            SqlDataAdapter sda = new SqlDataAdapter(sqlCommand.CommandText, SQLConnection);
+            SqlCommandBuilder scb = new SqlCommandBuilder(sda);
+            //Fill the DataTable.
+            sda.Fill(dTable);
         }
         public static void ShowOnGirdView(DataGridView dataGridView, String Query)
         {
