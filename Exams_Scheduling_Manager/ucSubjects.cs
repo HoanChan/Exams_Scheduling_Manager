@@ -34,7 +34,9 @@ namespace Exams_Scheduling_Manager
                 return Name.ToString();
             }
         }
+
         private Boolean IsModifyMode = false;
+
         public ucSubjects()
         {
             InitializeComponent();
@@ -97,6 +99,7 @@ namespace Exams_Scheduling_Manager
                 }
             }
         }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             txtID.Text =

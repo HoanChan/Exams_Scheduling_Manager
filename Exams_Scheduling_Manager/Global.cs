@@ -30,13 +30,13 @@ namespace Exams_Scheduling_Manager
         {
             //try
             //{
-                SqlCommand sqlCommand = new SqlCommand();
-                sqlCommand = SQLConnection.CreateCommand();
-                sqlCommand.CommandText = Query;
-                SqlDataAdapter sda = new SqlDataAdapter(sqlCommand.CommandText, SQLConnection);
-                SqlCommandBuilder scb = new SqlCommandBuilder(sda);
-                //Fill the DataTable.
-                sda.Fill(dTable);
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand = SQLConnection.CreateCommand();
+            sqlCommand.CommandText = Query;
+            SqlDataAdapter sda = new SqlDataAdapter(sqlCommand.CommandText, SQLConnection);
+            SqlCommandBuilder scb = new SqlCommandBuilder(sda);
+            //Fill the DataTable.
+            sda.Fill(dTable);
             //}
             //catch (Exception)
             //{
@@ -90,6 +90,19 @@ namespace Exams_Scheduling_Manager
             sqlCommand.Connection = SQLConnection;
             sqlCommand.CommandText = Query;
             return sqlCommand.ExecuteReader();
+        }
+        /// <summary>
+        /// Chạy dòng lệnh, trả về giá trị trong ô đầu tiên trong bảng (ô ở dòng 1 cột 1)
+        /// </summary>
+        /// <param name="Query">Lệnh cần chạy</param>
+        /// <returns>Giá trị của ô</returns>
+        public static object RunScalar(string Query)
+        {
+
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand.Connection = SQLConnection;
+            sqlCommand.CommandText = Query;
+            return sqlCommand.ExecuteScalar();
         }
     }
 }

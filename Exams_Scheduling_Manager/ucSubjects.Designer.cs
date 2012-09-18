@@ -31,39 +31,39 @@ namespace Exams_Scheduling_Manager
             this.components = new System.ComponentModel.Container();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.panel = new System.Windows.Forms.Panel();
+            this.btnModify = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.lblFaculty = new System.Windows.Forms.Label();
             this.lblSubject = new System.Windows.Forms.Label();
             this.cboFaculty = new System.Windows.Forms.ComboBox();
             this.cboSubject = new System.Windows.Forms.ComboBox();
             this.btnShow = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnModify = new System.Windows.Forms.Button();
             this.pnlEdit = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.chbIsExperimentalSubject = new System.Windows.Forms.CheckBox();
-            this.txtID = new System.Windows.Forms.TextBox();
-            this.txtName = new System.Windows.Forms.TextBox();
-            this.txtInfo = new System.Windows.Forms.TextBox();
-            this.cboManagerSubject = new System.Windows.Forms.ComboBox();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnOK = new System.Windows.Forms.Button();
             this.cboSchedulingBy = new System.Windows.Forms.ComboBox();
+            this.cboManagerSubject = new System.Windows.Forms.ComboBox();
+            this.txtInfo = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.txtID = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.nudTheoryCredit = new System.Windows.Forms.NumericUpDown();
             this.nudPracticesCredit = new System.Windows.Forms.NumericUpDown();
-            this.btnOK = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.chbIsExperimentalSubject = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.panel.SuspendLayout();
             this.pnlEdit.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTheoryCredit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPracticesCredit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView
@@ -93,6 +93,35 @@ namespace Exams_Scheduling_Manager
             this.panel.Name = "panel";
             this.panel.Size = new System.Drawing.Size(799, 69);
             this.panel.TabIndex = 1;
+            // 
+            // btnModify
+            // 
+            this.btnModify.Location = new System.Drawing.Point(667, 23);
+            this.btnModify.Name = "btnModify";
+            this.btnModify.Size = new System.Drawing.Size(116, 23);
+            this.btnModify.TabIndex = 7;
+            this.btnModify.Text = "Sửa đổi";
+            this.btnModify.UseVisualStyleBackColor = true;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(545, 23);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(116, 23);
+            this.btnDelete.TabIndex = 6;
+            this.btnDelete.Text = "Xóa";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Location = new System.Drawing.Point(423, 23);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(116, 23);
+            this.btnAdd.TabIndex = 5;
+            this.btnAdd.Text = "Thêm";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // lblFaculty
             // 
@@ -140,35 +169,6 @@ namespace Exams_Scheduling_Manager
             this.btnShow.UseVisualStyleBackColor = true;
             this.btnShow.Click += new System.EventHandler(this.btnShow_Click);
             // 
-            // btnAdd
-            // 
-            this.btnAdd.Location = new System.Drawing.Point(423, 23);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(116, 23);
-            this.btnAdd.TabIndex = 5;
-            this.btnAdd.Text = "Thêm";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Location = new System.Drawing.Point(545, 23);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(116, 23);
-            this.btnDelete.TabIndex = 6;
-            this.btnDelete.Text = "Xóa";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnModify
-            // 
-            this.btnModify.Location = new System.Drawing.Point(667, 23);
-            this.btnModify.Name = "btnModify";
-            this.btnModify.Size = new System.Drawing.Size(116, 23);
-            this.btnModify.TabIndex = 7;
-            this.btnModify.Text = "Sửa đổi";
-            this.btnModify.UseVisualStyleBackColor = true;
-            // 
             // pnlEdit
             // 
             this.pnlEdit.Controls.Add(this.btnCancel);
@@ -194,59 +194,62 @@ namespace Exams_Scheduling_Manager
             this.pnlEdit.TabIndex = 2;
             this.pnlEdit.Visible = false;
             // 
-            // label1
+            // btnCancel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 41);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Tên Môn học:";
+            this.btnCancel.Location = new System.Drawing.Point(201, 230);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(134, 23);
+            this.btnCancel.TabIndex = 16;
+            this.btnCancel.Text = "Bỏ qua";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // label2
+            // btnOK
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 12);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(69, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Mã môn học:";
+            this.btnOK.Location = new System.Drawing.Point(61, 230);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(134, 23);
+            this.btnOK.TabIndex = 15;
+            this.btnOK.Text = "Thực hiện";
+            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // label3
+            // cboSchedulingBy
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(23, 70);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(82, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Số chỉ lý thuyết:";
+            this.cboSchedulingBy.FormattingEnabled = true;
+            this.cboSchedulingBy.Location = new System.Drawing.Point(116, 146);
+            this.cboSchedulingBy.Name = "cboSchedulingBy";
+            this.cboSchedulingBy.Size = new System.Drawing.Size(255, 21);
+            this.cboSchedulingBy.TabIndex = 12;
             // 
-            // label4
+            // cboManagerSubject
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(23, 99);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(91, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Số chỉ thực hành:";
+            this.cboManagerSubject.FormattingEnabled = true;
+            this.cboManagerSubject.Location = new System.Drawing.Point(116, 175);
+            this.cboManagerSubject.Name = "cboManagerSubject";
+            this.cboManagerSubject.Size = new System.Drawing.Size(255, 21);
+            this.cboManagerSubject.TabIndex = 11;
             // 
-            // label5
+            // txtInfo
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(23, 149);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(65, 13);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Xếp lịch bởi:";
+            this.txtInfo.Location = new System.Drawing.Point(116, 204);
+            this.txtInfo.Name = "txtInfo";
+            this.txtInfo.Size = new System.Drawing.Size(255, 20);
+            this.txtInfo.TabIndex = 10;
             // 
-            // label6
+            // txtName
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(23, 178);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(83, 13);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Bộ môn quản lý:";
+            this.txtName.Location = new System.Drawing.Point(116, 34);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(255, 20);
+            this.txtName.TabIndex = 9;
+            // 
+            // txtID
+            // 
+            this.txtID.Location = new System.Drawing.Point(116, 9);
+            this.txtID.Name = "txtID";
+            this.txtID.Size = new System.Drawing.Size(255, 20);
+            this.txtID.TabIndex = 8;
             // 
             // label7
             // 
@@ -257,52 +260,64 @@ namespace Exams_Scheduling_Manager
             this.label7.TabIndex = 6;
             this.label7.Text = "Ghi chú:";
             // 
-            // chbIsExperimentalSubject
+            // label6
             // 
-            this.chbIsExperimentalSubject.AutoSize = true;
-            this.chbIsExperimentalSubject.Location = new System.Drawing.Point(116, 123);
-            this.chbIsExperimentalSubject.Name = "chbIsExperimentalSubject";
-            this.chbIsExperimentalSubject.Size = new System.Drawing.Size(114, 17);
-            this.chbIsExperimentalSubject.TabIndex = 7;
-            this.chbIsExperimentalSubject.Text = "Là môn thí nghiệm";
-            this.chbIsExperimentalSubject.UseVisualStyleBackColor = true;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(23, 178);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(83, 13);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "Bộ môn quản lý:";
             // 
-            // txtID
+            // label5
             // 
-            this.txtID.Location = new System.Drawing.Point(116, 9);
-            this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(255, 20);
-            this.txtID.TabIndex = 8;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(23, 149);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(65, 13);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Xếp lịch bởi:";
             // 
-            // txtName
+            // label4
             // 
-            this.txtName.Location = new System.Drawing.Point(116, 34);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(255, 20);
-            this.txtName.TabIndex = 9;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(23, 99);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(91, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Số chỉ thực hành:";
             // 
-            // txtInfo
+            // label3
             // 
-            this.txtInfo.Location = new System.Drawing.Point(116, 204);
-            this.txtInfo.Name = "txtInfo";
-            this.txtInfo.Size = new System.Drawing.Size(255, 20);
-            this.txtInfo.TabIndex = 10;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(23, 70);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(82, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Số chỉ lý thuyết:";
             // 
-            // cboManagerSubject
+            // label2
             // 
-            this.cboManagerSubject.FormattingEnabled = true;
-            this.cboManagerSubject.Location = new System.Drawing.Point(116, 175);
-            this.cboManagerSubject.Name = "cboManagerSubject";
-            this.cboManagerSubject.Size = new System.Drawing.Size(255, 21);
-            this.cboManagerSubject.TabIndex = 11;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(23, 12);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(69, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Mã môn học:";
             // 
-            // cboSchedulingBy
+            // label1
             // 
-            this.cboSchedulingBy.FormattingEnabled = true;
-            this.cboSchedulingBy.Location = new System.Drawing.Point(116, 146);
-            this.cboSchedulingBy.Name = "cboSchedulingBy";
-            this.cboSchedulingBy.Size = new System.Drawing.Size(255, 21);
-            this.cboSchedulingBy.TabIndex = 12;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(23, 41);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(74, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Tên Môn học:";
+            // 
+            // errorProvider
+            // 
+            this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProvider.ContainerControl = this;
             // 
             // nudTheoryCredit
             // 
@@ -328,29 +343,15 @@ namespace Exams_Scheduling_Manager
             this.nudPracticesCredit.Size = new System.Drawing.Size(142, 20);
             this.nudPracticesCredit.TabIndex = 14;
             // 
-            // btnOK
+            // chbIsExperimentalSubject
             // 
-            this.btnOK.Location = new System.Drawing.Point(61, 230);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(134, 23);
-            this.btnOK.TabIndex = 15;
-            this.btnOK.Text = "Thực hiện";
-            this.btnOK.UseVisualStyleBackColor = true;
-            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(201, 230);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(134, 23);
-            this.btnCancel.TabIndex = 16;
-            this.btnCancel.Text = "Bỏ qua";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // errorProvider
-            // 
-            this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.chbIsExperimentalSubject.AutoSize = true;
+            this.chbIsExperimentalSubject.Location = new System.Drawing.Point(116, 123);
+            this.chbIsExperimentalSubject.Name = "chbIsExperimentalSubject";
+            this.chbIsExperimentalSubject.Size = new System.Drawing.Size(114, 17);
+            this.chbIsExperimentalSubject.TabIndex = 7;
+            this.chbIsExperimentalSubject.Text = "Là môn thí nghiệm";
+            this.chbIsExperimentalSubject.UseVisualStyleBackColor = true;
             // 
             // ucSubjects
             // 
@@ -367,9 +368,9 @@ namespace Exams_Scheduling_Manager
             this.panel.PerformLayout();
             this.pnlEdit.ResumeLayout(false);
             this.pnlEdit.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTheoryCredit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPracticesCredit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -393,11 +394,8 @@ namespace Exams_Scheduling_Manager
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.CheckBox chbIsExperimentalSubject;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnOK;
-        private System.Windows.Forms.NumericUpDown nudPracticesCredit;
-        private System.Windows.Forms.NumericUpDown nudTheoryCredit;
         private System.Windows.Forms.ComboBox cboSchedulingBy;
         private System.Windows.Forms.ComboBox cboManagerSubject;
         private System.Windows.Forms.TextBox txtInfo;
@@ -405,6 +403,9 @@ namespace Exams_Scheduling_Manager
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.NumericUpDown nudPracticesCredit;
+        private System.Windows.Forms.NumericUpDown nudTheoryCredit;
+        private System.Windows.Forms.CheckBox chbIsExperimentalSubject;
 
 
     }
