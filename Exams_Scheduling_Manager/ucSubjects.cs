@@ -89,6 +89,7 @@ namespace Exams_Scheduling_Manager
             cboManagerSubject.SelectedIndex = -1;
             IsModifyMode = false;
             pnlEdit.Visible = true;
+            pnlCommands.Enabled = false;
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -120,6 +121,7 @@ namespace Exams_Scheduling_Manager
                         MessageBox.Show("Sửa đổi không thực hiện được", "Thông báo");
                     }
                     pnlEdit.Visible = false;
+                    pnlCommands.Visible = true;
                 }
             }
             else
@@ -148,6 +150,7 @@ namespace Exams_Scheduling_Manager
                         MessageBox.Show("Thêm mới không thực hiện được", "Thông báo");
                     }
                     pnlEdit.Visible = false;
+                    pnlCommands.Visible = true;
                 }
             }
         }
@@ -219,6 +222,7 @@ namespace Exams_Scheduling_Manager
         private void btnCancel_Click(object sender, EventArgs e)
         {
             pnlEdit.Visible = false;
+            pnlCommands.Visible = true;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -277,6 +281,7 @@ namespace Exams_Scheduling_Manager
                 }
                 IsModifyMode = true;
                 pnlEdit.Visible = true;
+                pnlCommands.Enabled = false;
             }
             
         }
