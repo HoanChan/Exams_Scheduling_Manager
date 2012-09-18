@@ -30,7 +30,7 @@ namespace Exams_Scheduling_Manager
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.pnlCommands = new System.Windows.Forms.Panel();
+            this.panel = new System.Windows.Forms.Panel();
             this.btnModify = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -42,14 +42,11 @@ namespace Exams_Scheduling_Manager
             this.pnlEdit = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.nudPracticesCredit = new System.Windows.Forms.NumericUpDown();
-            this.nudTheoryCredit = new System.Windows.Forms.NumericUpDown();
             this.cboSchedulingBy = new System.Windows.Forms.ComboBox();
             this.cboManagerSubject = new System.Windows.Forms.ComboBox();
             this.txtInfo = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.txtID = new System.Windows.Forms.TextBox();
-            this.chbIsExperimentalSubject = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -58,12 +55,15 @@ namespace Exams_Scheduling_Manager
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.nudTheoryCredit = new System.Windows.Forms.NumericUpDown();
+            this.nudPracticesCredit = new System.Windows.Forms.NumericUpDown();
+            this.chbIsExperimentalSubject = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
-            this.pnlCommands.SuspendLayout();
+            this.panel.SuspendLayout();
             this.pnlEdit.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudPracticesCredit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudTheoryCredit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTheoryCredit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPracticesCredit)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView
@@ -78,21 +78,21 @@ namespace Exams_Scheduling_Manager
             this.dataGridView.Size = new System.Drawing.Size(799, 391);
             this.dataGridView.TabIndex = 0;
             // 
-            // pnlCommands
+            // panel
             // 
-            this.pnlCommands.Controls.Add(this.btnModify);
-            this.pnlCommands.Controls.Add(this.btnDelete);
-            this.pnlCommands.Controls.Add(this.btnAdd);
-            this.pnlCommands.Controls.Add(this.lblFaculty);
-            this.pnlCommands.Controls.Add(this.lblSubject);
-            this.pnlCommands.Controls.Add(this.cboFaculty);
-            this.pnlCommands.Controls.Add(this.cboSubject);
-            this.pnlCommands.Controls.Add(this.btnShow);
-            this.pnlCommands.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlCommands.Location = new System.Drawing.Point(0, 397);
-            this.pnlCommands.Name = "pnlCommands";
-            this.pnlCommands.Size = new System.Drawing.Size(799, 69);
-            this.pnlCommands.TabIndex = 1;
+            this.panel.Controls.Add(this.btnModify);
+            this.panel.Controls.Add(this.btnDelete);
+            this.panel.Controls.Add(this.btnAdd);
+            this.panel.Controls.Add(this.lblFaculty);
+            this.panel.Controls.Add(this.lblSubject);
+            this.panel.Controls.Add(this.cboFaculty);
+            this.panel.Controls.Add(this.cboSubject);
+            this.panel.Controls.Add(this.btnShow);
+            this.panel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel.Location = new System.Drawing.Point(0, 397);
+            this.panel.Name = "panel";
+            this.panel.Size = new System.Drawing.Size(799, 69);
+            this.panel.TabIndex = 1;
             // 
             // btnModify
             // 
@@ -102,7 +102,6 @@ namespace Exams_Scheduling_Manager
             this.btnModify.TabIndex = 7;
             this.btnModify.Text = "Sửa đổi";
             this.btnModify.UseVisualStyleBackColor = true;
-            this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
             // 
             // btnDelete
             // 
@@ -172,7 +171,6 @@ namespace Exams_Scheduling_Manager
             // 
             // pnlEdit
             // 
-            this.pnlEdit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlEdit.Controls.Add(this.btnCancel);
             this.pnlEdit.Controls.Add(this.btnOK);
             this.pnlEdit.Controls.Add(this.nudPracticesCredit);
@@ -216,30 +214,6 @@ namespace Exams_Scheduling_Manager
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // nudPracticesCredit
-            // 
-            this.nudPracticesCredit.Location = new System.Drawing.Point(116, 97);
-            this.nudPracticesCredit.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.nudPracticesCredit.Name = "nudPracticesCredit";
-            this.nudPracticesCredit.Size = new System.Drawing.Size(142, 20);
-            this.nudPracticesCredit.TabIndex = 14;
-            // 
-            // nudTheoryCredit
-            // 
-            this.nudTheoryCredit.Location = new System.Drawing.Point(116, 68);
-            this.nudTheoryCredit.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.nudTheoryCredit.Name = "nudTheoryCredit";
-            this.nudTheoryCredit.Size = new System.Drawing.Size(142, 20);
-            this.nudTheoryCredit.TabIndex = 13;
-            // 
             // cboSchedulingBy
             // 
             this.cboSchedulingBy.FormattingEnabled = true;
@@ -265,7 +239,7 @@ namespace Exams_Scheduling_Manager
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(116, 38);
+            this.txtName.Location = new System.Drawing.Point(116, 34);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(255, 20);
             this.txtName.TabIndex = 9;
@@ -276,16 +250,6 @@ namespace Exams_Scheduling_Manager
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(255, 20);
             this.txtID.TabIndex = 8;
-            // 
-            // chbIsExperimentalSubject
-            // 
-            this.chbIsExperimentalSubject.AutoSize = true;
-            this.chbIsExperimentalSubject.Location = new System.Drawing.Point(116, 123);
-            this.chbIsExperimentalSubject.Name = "chbIsExperimentalSubject";
-            this.chbIsExperimentalSubject.Size = new System.Drawing.Size(114, 17);
-            this.chbIsExperimentalSubject.TabIndex = 7;
-            this.chbIsExperimentalSubject.Text = "Là môn thí nghiệm";
-            this.chbIsExperimentalSubject.UseVisualStyleBackColor = true;
             // 
             // label7
             // 
@@ -355,24 +319,58 @@ namespace Exams_Scheduling_Manager
             this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider.ContainerControl = this;
             // 
+            // nudTheoryCredit
+            // 
+            this.nudTheoryCredit.Location = new System.Drawing.Point(116, 68);
+            this.nudTheoryCredit.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nudTheoryCredit.Name = "nudTheoryCredit";
+            this.nudTheoryCredit.Size = new System.Drawing.Size(142, 20);
+            this.nudTheoryCredit.TabIndex = 13;
+            // 
+            // nudPracticesCredit
+            // 
+            this.nudPracticesCredit.Location = new System.Drawing.Point(116, 97);
+            this.nudPracticesCredit.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nudPracticesCredit.Name = "nudPracticesCredit";
+            this.nudPracticesCredit.Size = new System.Drawing.Size(142, 20);
+            this.nudPracticesCredit.TabIndex = 14;
+            // 
+            // chbIsExperimentalSubject
+            // 
+            this.chbIsExperimentalSubject.AutoSize = true;
+            this.chbIsExperimentalSubject.Location = new System.Drawing.Point(116, 123);
+            this.chbIsExperimentalSubject.Name = "chbIsExperimentalSubject";
+            this.chbIsExperimentalSubject.Size = new System.Drawing.Size(114, 17);
+            this.chbIsExperimentalSubject.TabIndex = 7;
+            this.chbIsExperimentalSubject.Text = "Là môn thí nghiệm";
+            this.chbIsExperimentalSubject.UseVisualStyleBackColor = true;
+            // 
             // ucSubjects
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pnlEdit);
-            this.Controls.Add(this.pnlCommands);
+            this.Controls.Add(this.panel);
             this.Controls.Add(this.dataGridView);
             this.Name = "ucSubjects";
             this.Size = new System.Drawing.Size(799, 466);
             this.Load += new System.EventHandler(this.ucSubjects_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
-            this.pnlCommands.ResumeLayout(false);
-            this.pnlCommands.PerformLayout();
+            this.panel.ResumeLayout(false);
+            this.panel.PerformLayout();
             this.pnlEdit.ResumeLayout(false);
             this.pnlEdit.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudPracticesCredit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudTheoryCredit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTheoryCredit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPracticesCredit)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -380,7 +378,7 @@ namespace Exams_Scheduling_Manager
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView;
-        private System.Windows.Forms.Panel pnlCommands;
+        private System.Windows.Forms.Panel panel;
         private System.Windows.Forms.Button btnShow;
         private System.Windows.Forms.Label lblFaculty;
         private System.Windows.Forms.Label lblSubject;
@@ -396,11 +394,8 @@ namespace Exams_Scheduling_Manager
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.CheckBox chbIsExperimentalSubject;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnOK;
-        private System.Windows.Forms.NumericUpDown nudPracticesCredit;
-        private System.Windows.Forms.NumericUpDown nudTheoryCredit;
         private System.Windows.Forms.ComboBox cboSchedulingBy;
         private System.Windows.Forms.ComboBox cboManagerSubject;
         private System.Windows.Forms.TextBox txtInfo;
@@ -408,6 +403,9 @@ namespace Exams_Scheduling_Manager
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.NumericUpDown nudPracticesCredit;
+        private System.Windows.Forms.NumericUpDown nudTheoryCredit;
+        private System.Windows.Forms.CheckBox chbIsExperimentalSubject;
 
 
     }

@@ -12,11 +12,35 @@ namespace Exams_Scheduling_Manager
 {
     public partial class ucSubjects : UserControl
     {
+        private class SQLItem
+        {
+            public object ID;
+            public object Name;
+            public object Info;
+            public SQLItem(object _ID, object _Name)
+            {
+                ID = _ID;
+                Name = _Name;
+                Info = null;
+            }
+            public SQLItem(object _ID, object _Name, Object _Info)
+            {
+                ID = _ID;
+                Name = _Name;
+                Info = _Info;
+            }
+            public override string ToString()
+            {
+                return Name.ToString();
+            }
+        }
+
         private Boolean IsModifyMode = false;
+
         public ucSubjects()
         {
             InitializeComponent();
-            dataGridView.ReadOnly = true;
+            dataGridView.ReadOnly = true;  
         }
         private void ucSubjects_Load(object sender, EventArgs e)
         {
@@ -40,9 +64,8 @@ namespace Exams_Scheduling_Manager
                     cboSchedulingBy.Items.Add(new SQLItem(dRow["MaKhoa"], dRow["TenKhoa"]));
                 }
             }
-            pnlEdit.Left = (Width - pnlEdit.Width) / 2;
-            pnlEdit.Top = (dataGridView.Height - pnlEdit.Height) / 2;
         }
+
         private void btnShow_Click(object sender, EventArgs e)
         {
             if (cboFaculty.Enabled)
@@ -56,6 +79,7 @@ namespace Exams_Scheduling_Manager
                 Global.ShowOnGirdView(dataGridView, "Select * from monhoc where BoMonQL = " + ((SQLItem)cboSubject.SelectedItem).ID);
             }
         }
+
         private void cboSubject_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (((SQLItem)cboSubject.SelectedItem).ID == null)
@@ -75,6 +99,7 @@ namespace Exams_Scheduling_Manager
                 }
             }
         }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             txtID.Text =
@@ -87,47 +112,21 @@ namespace Exams_Scheduling_Manager
             cboManagerSubject.SelectedIndex = -1;
             IsModifyMode = false;
             pnlEdit.Visible = true;
-            pnlCommands.Enabled = false;
         }
+
         private void btnOK_Click(object sender, EventArgs e)
         {
             if (IsModifyMode)
             {
-                if (CheckModifyModeInfo())
-                {
-                    SqlCommand mySqlCommand = Global.SQLConnection.CreateCommand();
-                    mySqlCommand.CommandText = "UPDATE MonHoc"
-                                                + " SET MaMonHoc = @MaMonHoc, TenMonHoc = @TenMonHoc, TCLyThuyet = @TCLyThuyet, TCThucHanh = @TCThucHanh, MonThiNghiem = @MonThiNghiem, KhoaXepLich = @KhoaXepLich, BoMonQL = @BoMonQL, GhiChu = @GhiChu"
-                                                + " WHERE MaMonHoc = @MaMonHocCu";
-                    mySqlCommand.Parameters.AddWithValue("@MaMonHoc", txtID.Text);
-                    mySqlCommand.Parameters.AddWithValue("@TenMonHoc", txtName.Text);
-                    mySqlCommand.Parameters.AddWithValue("@TCLyThuyet", nudTheoryCredit.Value);
-                    mySqlCommand.Parameters.AddWithValue("@TCThucHanh", nudPracticesCredit.Value);
-                    mySqlCommand.Parameters.AddWithValue("@MonThiNghiem", (chbIsExperimentalSubject.Checked ? 1 : 0));
-                    mySqlCommand.Parameters.AddWithValue("@KhoaXepLich", (cboSchedulingBy.SelectedIndex == -1 ? DBNull.Value : ((SQLItem)cboSchedulingBy.SelectedItem).ID));
-                    mySqlCommand.Parameters.AddWithValue("@BoMonQL", ((SQLItem)cboManagerSubject.SelectedItem).ID);
-                    mySqlCommand.Parameters.AddWithValue("@GhiChu", (txtInfo.Text.Length == 0 ? DBNull.Value : (object)txtInfo.Text));
-                    mySqlCommand.Parameters.AddWithValue("@MaMonHocCu", dataGridView.SelectedRows[0].Cells["MaMonHoc"].Value.ToString());
-                    if (mySqlCommand.ExecuteNonQuery() > 0)
-                    {
-                        MessageBox.Show("Sửa đổi thành công", "Thông báo");
-                        btnShow.PerformClick();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Sửa đổi không thực hiện được", "Thông báo");
-                    }
-                    pnlEdit.Visible = false;
-                    pnlCommands.Visible = true;
-                }
+
             }
             else
             {
                 if (CheckAddModeInfo())
                 {
                     SqlCommand mySqlCommand = Global.SQLConnection.CreateCommand();
-                    mySqlCommand.CommandText = "INSERT INTO MonHoc (MaMonHoc, TenMonHoc, TCLyThuyet, TCThucHanh, MonThiNghiem, KhoaXepLich, BoMonQL, GhiChu)"
-                                                + " VALUES (@MaMonHoc, @TenMonHoc, @TCLyThuyet, @TCThucHanh, @MonThiNghiem, @KhoaXepLich, @BoMonQL, @GhiChu)";
+                    mySqlCommand.CommandText = "INSERT INTO MonHoc (MaMonHoc, TenMonHoc, TCLyThuyet, TCThucHanh, MonThiNghiem, KhoaXepLich, BoMonQL, GhiChu) VALUES (@MaMonHoc, @TenMonHoc, @TCLyThuyet, @TCThucHanh, @MonThiNghiem, @KhoaXepLich, @BoMonQL, @GhiChu)";
+
                     mySqlCommand.Parameters.AddWithValue("@MaMonHoc", txtID.Text);
                     mySqlCommand.Parameters.AddWithValue("@TenMonHoc", txtName.Text);
                     mySqlCommand.Parameters.AddWithValue("@TCLyThuyet", nudTheoryCredit.Value);
@@ -137,7 +136,7 @@ namespace Exams_Scheduling_Manager
                     mySqlCommand.Parameters.AddWithValue("@BoMonQL", ((SQLItem)cboManagerSubject.SelectedItem).ID);
                     mySqlCommand.Parameters.AddWithValue("@GhiChu", (txtInfo.Text.Length == 0 ? DBNull.Value : (object)txtInfo.Text));
 
-                    if (mySqlCommand.ExecuteNonQuery() > 0)
+                    if (mySqlCommand.ExecuteNonQuery() != -1)
                     {
                         MessageBox.Show("Thêm mới thành công", "Thông báo");
                         btnShow.PerformClick();
@@ -147,18 +146,28 @@ namespace Exams_Scheduling_Manager
                         MessageBox.Show("Thêm mới không thực hiện được", "Thông báo");
                     }
                     pnlEdit.Visible = false;
-                    pnlCommands.Visible = true;
+                }
+                else
+                {
                 }
             }
         }
-        private Boolean CheckInfo()
+        
+        private Boolean CheckAddModeInfo()
         {
             Boolean Ok = true;
-
-            if (txtID.Text.Length != 7)
+            if (Global.RunNonQuery("select * from monhoc where MaMonHoc = " + txtID.Text) != -1)
             {
-                errorProvider.SetError(txtID, "Phải có đúng 7 ký tự");
+                errorProvider.SetError(txtID, "Đã được sử dụng, đề nghị nhập cái khác");
                 Ok = false;
+            }
+            else
+            {
+                if (txtID.Text.Length != 7)
+                {
+                    errorProvider.SetError(txtID, "Phải có đúng 7 ký tự");
+                    Ok = false;
+                }
             }
 
             if (txtName.Text.Length > 60)
@@ -185,55 +194,25 @@ namespace Exams_Scheduling_Manager
             }
             return Ok;
         }
-        private Boolean CheckAddModeInfo()
-        {
-            Boolean Ok = true;
-            if (Global.RunScalar("SELECT MaMonHoc FROM MonHoc WHERE MaMonHoc = '" + txtID.Text + "'") != null)
-            {
-                errorProvider.SetError(txtID, "Đã được sử dụng, đề nghị nhập cái khác");
-                Ok = false;
-            }
-            if (!CheckInfo())
-            {
-                Ok = false;
-            }
-            return Ok;
-        }
-        private Boolean CheckModifyModeInfo()
-        {
-            Boolean Ok = true;
-            if (txtID.Text != dataGridView.SelectedRows[0].Cells["MaMonHoc"].Value.ToString())
-            {
-                if (Global.RunScalar("SELECT MaMonHoc FROM MonHoc WHERE MaMonHoc = '" + txtID.Text + "'") != null)
-                {
-                    errorProvider.SetError(txtID, "Đã được sử dụng, đề nghị nhập cái khác");
-                    Ok = false;
-                }
-            }
-            if (!CheckInfo())
-            {
-                Ok = false;
-            }
-            return Ok;
-        }
+
         private void btnCancel_Click(object sender, EventArgs e)
         {
             pnlEdit.Visible = false;
-            pnlCommands.Visible = true;
         }
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Đề nghị chọn dòng cần xóa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            else if (MessageBox.Show("Bạn có muốn xóa môn học có mã là: " + dataGridView.SelectedRows[0].Cells["MaMonHoc"].Value.ToString() + " và có tên là: " + dataGridView.SelectedRows[0].Cells["TenMonHoc"].Value.ToString() + " hay không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            else if (MessageBox.Show("Bạn có muốn xóa môn học có mã là: " + dataGridView.SelectedRows[0].Cells["MaMonHoc"].Value + " và có tên là: " + dataGridView.SelectedRows[0].Cells["TenMonHoc"].Value + " hay không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 SqlCommand mySqlCommand = Global.SQLConnection.CreateCommand();
                 mySqlCommand.CommandText = "DELETE FROM MonHoc WHERE MaMonHoc = @MaMonHoc";
-                mySqlCommand.Parameters.AddWithValue("@MaMonHoc", dataGridView.SelectedRows[0].Cells["MaMonHoc"].Value.ToString());
+                mySqlCommand.Parameters.AddWithValue("@MaMonHoc", dataGridView.SelectedRows[0].Cells["MaMonHoc"].Value);
 
-                if (mySqlCommand.ExecuteNonQuery() > 0)
+                if (mySqlCommand.ExecuteNonQuery() != -1)
                 {
                     MessageBox.Show("Xóa thành công", "Thông báo");
                     btnShow.PerformClick();
@@ -243,42 +222,6 @@ namespace Exams_Scheduling_Manager
                     MessageBox.Show("Xóa không thực hiện được", "Thông báo");
                 }
             }
-        }
-        private void btnModify_Click(object sender, EventArgs e)
-        {
-            if (dataGridView.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Đề nghị chọn dòng cần sửa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            else
-            {
-                txtID.Text = dataGridView.SelectedRows[0].Cells["MaMonHoc"].Value.ToString();
-                txtName.Text = dataGridView.SelectedRows[0].Cells["TenMonHoc"].Value.ToString();
-                txtInfo.Text = dataGridView.SelectedRows[0].Cells["GhiChu"].Value.ToString();
-                nudPracticesCredit.Value = Convert.ToDecimal(dataGridView.SelectedRows[0].Cells["TCThucHanh"].Value);
-                nudTheoryCredit.Value = Convert.ToDecimal(dataGridView.SelectedRows[0].Cells["TCLyThuyet"].Value);
-                chbIsExperimentalSubject.Checked = Convert.ToDecimal(dataGridView.SelectedRows[0].Cells["MonThiNghiem"].Value) == 1 ? true : false;
-                foreach (SQLItem item in cboSchedulingBy.Items)
-                {
-                    if (item.ID.ToString() == dataGridView.SelectedRows[0].Cells["KhoaXepLich"].Value.ToString())
-                    {
-                        cboSchedulingBy.SelectedItem = item;
-                        break;
-                    }
-                }
-                foreach (SQLItem item in cboManagerSubject.Items)
-                {
-                    if (item.ID.ToString() == dataGridView.SelectedRows[0].Cells["BoMonQL"].Value.ToString())
-                    {
-                        cboManagerSubject.SelectedItem = item;
-                        break;
-                    }
-                }
-                IsModifyMode = true;
-                pnlEdit.Visible = true;
-                pnlCommands.Enabled = false;
-            }
-            
         }
     }
 }

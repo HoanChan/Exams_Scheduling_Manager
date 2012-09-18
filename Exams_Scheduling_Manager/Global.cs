@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -50,6 +50,8 @@ namespace Exams_Scheduling_Manager
 
         public static void FillTable(String Query, DataTable dTable)
         {
+            //try
+            //{
             SqlCommand sqlCommand = new SqlCommand();
             sqlCommand = SQLConnection.CreateCommand();
             sqlCommand.CommandText = Query;
@@ -57,6 +59,11 @@ namespace Exams_Scheduling_Manager
             SqlCommandBuilder scb = new SqlCommandBuilder(sda);
             //Fill the DataTable.
             sda.Fill(dTable);
+            //}
+            //catch (Exception)
+            //{
+
+            //}
         }
         public static void ShowOnGirdView(DataGridView dataGridView, String Query)
         {
@@ -83,10 +90,10 @@ namespace Exams_Scheduling_Manager
             }
         }
         /// <summary>
-        /// Chạy dòng lệnh không trả về bảng
+        /// Ch?y d?ng l?nh kh?ng tr? v? b?ng
         /// </summary>
-        /// <param name="Query">Lệnh cần chạy</param>
-        /// <returns>Số lượng hàng bị ảnh hưởng</returns>
+        /// <param name="Query">L?nh c?n ch?y</param>
+        /// <returns>S? l??ng h?ng b? ?nh h??ng</returns>
         public static int RunNonQuery(string Query)
         {
             SqlCommand sqlCommand = new SqlCommand();
@@ -95,10 +102,10 @@ namespace Exams_Scheduling_Manager
             return sqlCommand.ExecuteNonQuery();
         }
         /// <summary>
-        /// Chạy dòng lệnh, trả về giá trị trong ô đầu tiên trong bảng (ô ở dòng 1 cột 1)
+        /// Ch?y d?ng l?nh, tr? v? gi? tr? trong ? ??u ti?n trong b?ng (? ? d?ng 1 c?t 1)
         /// </summary>
-        /// <param name="Query">Lệnh cần chạy</param>
-        /// <returns>Giá trị của ô</returns>
+        /// <param name="Query">L?nh c?n ch?y</param>
+        /// <returns>Gi? tr? c?a ?</returns>
         public static object RunScalar(string Query)
         {
             SqlCommand sqlCommand = new SqlCommand();
@@ -108,16 +115,29 @@ namespace Exams_Scheduling_Manager
         }
 
         /// <summary>
-        /// Chạy dòng lệnh trả về một bảng
+        /// Ch?y d?ng l?nh tr? v? m?t b?ng
         /// </summary>
-        /// <param name="Query">Lệnh cần chạy</param>
-        /// <returns>Kết quả</returns>
+        /// <param name="Query">L?nh c?n ch?y</param>
+        /// <returns>K?t qu?</returns>
         public static SqlDataReader RunReader(string Query)
         {
             SqlCommand sqlCommand = new SqlCommand();
             sqlCommand.Connection = SQLConnection;
             sqlCommand.CommandText = Query;
             return sqlCommand.ExecuteReader();
+        }
+        /// <summary>
+        /// Ch?y d?ng l?nh, tr? v? gi? tr? trong ? ??u ti?n trong b?ng (? ? d?ng 1 c?t 1)
+        /// </summary>
+        /// <param name="Query">L?nh c?n ch?y</param>
+        /// <returns>Gi? tr? c?a ?</returns>
+        public static object RunScalar(string Query)
+        {
+
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand.Connection = SQLConnection;
+            sqlCommand.CommandText = Query;
+            return sqlCommand.ExecuteScalar();
         }
     }
 }
