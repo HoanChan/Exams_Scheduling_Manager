@@ -36,7 +36,7 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.ucSubjects2 = new Exams_Scheduling_Manager.ucSubjects();
-            this.ucCourseRegistration1 = new Exams_Scheduling_Manager.ucCourseRegistration();
+          //  this.ucCourseRegistration1 = new Exams_Scheduling_Manager.ucCourseRegistration();
             this.tabTable.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage5.SuspendLayout();
@@ -79,7 +79,7 @@
             // 
             // tabPage5
             // 
-            this.tabPage5.Controls.Add(this.ucCourseRegistration1);
+         //   this.tabPage5.Controls.Add(this.ucCourseRegistration1);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
@@ -130,11 +130,11 @@
             // 
             // ucCourseRegistration1
             // 
-            this.ucCourseRegistration1.Dock = System.Windows.Forms.DockStyle.Fill;
+          /*  this.ucCourseRegistration1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucCourseRegistration1.Location = new System.Drawing.Point(3, 3);
             this.ucCourseRegistration1.Name = "ucCourseRegistration1";
             this.ucCourseRegistration1.Size = new System.Drawing.Size(974, 472);
-            this.ucCourseRegistration1.TabIndex = 0;
+            this.ucCourseRegistration1.TabIndex = 0;*/
             // 
             // frmDatabaseEditor
             // 
@@ -164,7 +164,7 @@
         private ucSubjects ucSubjects2;
         private ucStudents ucStudents2;
         private System.Windows.Forms.TabPage tabPage5;
-        private ucCourseRegistration ucCourseRegistration1;
+      //  private ucCourseRegistration ucCourseRegistration1;
     }
 }
 
