@@ -39,6 +39,7 @@ namespace Exams_Scheduling_Manager
                 }
             }
         }
+
         private void btnShow_Click(object sender, EventArgs e)
         {
             if (cboFaculty.Enabled)
