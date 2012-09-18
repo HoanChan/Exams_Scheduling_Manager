@@ -30,12 +30,13 @@
         {
             this.tabTable = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.ucStudents2 = new Exams_Scheduling_Manager.ucStudents();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.ucSubjects2 = new Exams_Scheduling_Manager.ucSubjects();
-            this.ucStudents2 = new Exams_Scheduling_Manager.ucStudents();
             this.tabTable.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,6 +64,15 @@
             this.tabPage1.Text = "Sinh viên";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // ucStudents2
+            // 
+            this.ucStudents2.BackColor = System.Drawing.Color.DimGray;
+            this.ucStudents2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucStudents2.Location = new System.Drawing.Point(3, 3);
+            this.ucStudents2.Name = "ucStudents2";
+            this.ucStudents2.Size = new System.Drawing.Size(974, 472);
+            this.ucStudents2.TabIndex = 0;
+            // 
             // tabPage2
             // 
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -75,7 +85,6 @@
             // 
             // tabPage3
             // 
-            
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -97,21 +106,12 @@
             // 
             // ucSubjects2
             // 
-            this.ucSubjects2.BackColor = System.Drawing.Color.DimGray;
+            this.ucSubjects2.BackColor = System.Drawing.Color.Transparent;
             this.ucSubjects2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucSubjects2.Location = new System.Drawing.Point(3, 3);
             this.ucSubjects2.Name = "ucSubjects2";
             this.ucSubjects2.Size = new System.Drawing.Size(974, 472);
             this.ucSubjects2.TabIndex = 0;
-            //
-            // ucStudents2
-            // 
-            this.ucStudents2.BackColor = System.Drawing.Color.DimGray;
-            this.ucStudents2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucStudents2.Location = new System.Drawing.Point(3, 3);
-            this.ucStudents2.Name = "ucSubjects2";
-            this.ucStudents2.Size = new System.Drawing.Size(974, 472);
-            this.ucStudents2.TabIndex = 0;
             // 
             // frmDatabaseEditor
             // 
@@ -123,6 +123,7 @@
             this.Text = "Chỉnh sửa cơ sở dữ liệu";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmDatabaseEditor_FormClosed);
             this.tabTable.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.ResumeLayout(false);
 

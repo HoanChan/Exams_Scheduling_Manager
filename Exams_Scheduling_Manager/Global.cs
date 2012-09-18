@@ -9,6 +9,28 @@ using System.Drawing;
 
 namespace Exams_Scheduling_Manager
 {
+    public class SQLItem
+    {
+        public object ID;
+        public object Name;
+        public object Info;
+        public SQLItem(object _ID, object _Name)
+        {
+            ID = _ID;
+            Name = _Name;
+            Info = null;
+        }
+        public SQLItem(object _ID, object _Name, Object _Info)
+        {
+            ID = _ID;
+            Name = _Name;
+            Info = _Info;
+        }
+        public override string ToString()
+        {
+            return Name.ToString();
+        }
+    }
     public class Global
     {
         public static SqlConnection SQLConnection;
