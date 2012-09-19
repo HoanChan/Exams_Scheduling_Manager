@@ -59,6 +59,12 @@
     <Compile Include="frmConnection.designer.cs">
       <DependentUpon>frmConnection.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSheduling.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +86,12 @@
     <Compile Include="ucRoom.Designer.cs">
       <DependentUpon>ucRoom.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucStep_SelectSubjects.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucStep_SelectSubjects.Designer.cs">
+      <DependentUpon>ucStep_SelectSubjects.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucStudents.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -98,6 +110,9 @@
     <EmbeddedResource Include="frmConnection.resx">
       <DependentUpon>frmConnection.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmSheduling.resx">
       <DependentUpon>frmSheduling.cs</DependentUpon>
     </EmbeddedResource>
@@ -115,6 +130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ucRoom.resx">
       <DependentUpon>ucRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucStep_SelectSubjects.resx">
+      <DependentUpon>ucStep_SelectSubjects.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucStudents.resx">
       <DependentUpon>ucStudents.cs</DependentUpon>

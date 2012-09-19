@@ -217,7 +217,7 @@
             this.lblAbout.Size = new System.Drawing.Size(228, 57);
             this.lblAbout.TabIndex = 16;
             this.lblAbout.Text = "Tiểu luận chuyên ngành:\r\n    + Lê Hoàn Chân - 09910015\r\n    + Nguyễn Hoàng Duy - " +
-    "0991002";
+                "0991002";
             this.lblAbout.Visible = false;
             // 
             // frmConnection

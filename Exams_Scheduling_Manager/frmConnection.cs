@@ -93,9 +93,10 @@ namespace Exams_Scheduling_Manager
                 ConnectionString = string.Format("Data Source = '{0}'; User Id = '{1}'; Password = '{2}'; Database = '{3}'", txtServerName.Text, txtUserName.Text, txtPassword.Text, cboDatabases.Text);
 
             }
-            frmDatabaseEditor frmDBViewer = new frmDatabaseEditor(ConnectionString);
+            Global.Connect(ConnectionString);
+            frmMain frmMain = new frmMain();
             this.Hide();
-            frmDBViewer.Show();
+            frmMain.Show();
         }
 
         private void btnAbout_Click(object sender, EventArgs e)

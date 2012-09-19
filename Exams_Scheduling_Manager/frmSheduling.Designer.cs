@@ -30,10 +30,12 @@
         {
             this.tabStep = new System.Windows.Forms.TabControl();
             this.tabPageStep1 = new System.Windows.Forms.TabPage();
+            this.ucStep_SelectSubjects1 = new Exams_Scheduling_Manager.ucStep_SelectSubjects();
             this.tabPageStep2 = new System.Windows.Forms.TabPage();
             this.tabPageStep3 = new System.Windows.Forms.TabPage();
             this.tabPageStep4 = new System.Windows.Forms.TabPage();
             this.tabStep.SuspendLayout();
+            this.tabPageStep1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabStep
@@ -46,25 +48,34 @@
             this.tabStep.Location = new System.Drawing.Point(0, 0);
             this.tabStep.Name = "tabStep";
             this.tabStep.SelectedIndex = 0;
-            this.tabStep.Size = new System.Drawing.Size(672, 496);
+            this.tabStep.Size = new System.Drawing.Size(754, 496);
             this.tabStep.TabIndex = 0;
             // 
             // tabPageStep1
             // 
+            this.tabPageStep1.Controls.Add(this.ucStep_SelectSubjects1);
             this.tabPageStep1.Location = new System.Drawing.Point(4, 22);
             this.tabPageStep1.Name = "tabPageStep1";
             this.tabPageStep1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageStep1.Size = new System.Drawing.Size(664, 470);
+            this.tabPageStep1.Size = new System.Drawing.Size(746, 470);
             this.tabPageStep1.TabIndex = 0;
             this.tabPageStep1.Text = "Bước 1 >";
             this.tabPageStep1.UseVisualStyleBackColor = true;
+            // 
+            // ucStep_SelectSubjects1
+            // 
+            this.ucStep_SelectSubjects1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucStep_SelectSubjects1.Location = new System.Drawing.Point(3, 3);
+            this.ucStep_SelectSubjects1.Name = "ucStep_SelectSubjects1";
+            this.ucStep_SelectSubjects1.Size = new System.Drawing.Size(740, 464);
+            this.ucStep_SelectSubjects1.TabIndex = 0;
             // 
             // tabPageStep2
             // 
             this.tabPageStep2.Location = new System.Drawing.Point(4, 22);
             this.tabPageStep2.Name = "tabPageStep2";
             this.tabPageStep2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageStep2.Size = new System.Drawing.Size(664, 470);
+            this.tabPageStep2.Size = new System.Drawing.Size(746, 470);
             this.tabPageStep2.TabIndex = 1;
             this.tabPageStep2.Text = "Bước 2 >";
             this.tabPageStep2.UseVisualStyleBackColor = true;
@@ -73,7 +84,7 @@
             // 
             this.tabPageStep3.Location = new System.Drawing.Point(4, 22);
             this.tabPageStep3.Name = "tabPageStep3";
-            this.tabPageStep3.Size = new System.Drawing.Size(664, 470);
+            this.tabPageStep3.Size = new System.Drawing.Size(746, 470);
             this.tabPageStep3.TabIndex = 2;
             this.tabPageStep3.Text = "Bước 3 >";
             this.tabPageStep3.UseVisualStyleBackColor = true;
@@ -82,7 +93,7 @@
             // 
             this.tabPageStep4.Location = new System.Drawing.Point(4, 22);
             this.tabPageStep4.Name = "tabPageStep4";
-            this.tabPageStep4.Size = new System.Drawing.Size(664, 470);
+            this.tabPageStep4.Size = new System.Drawing.Size(746, 470);
             this.tabPageStep4.TabIndex = 3;
             this.tabPageStep4.Text = "Xếp Lịch";
             this.tabPageStep4.UseVisualStyleBackColor = true;
@@ -91,11 +102,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(672, 496);
+            this.ClientSize = new System.Drawing.Size(754, 496);
             this.Controls.Add(this.tabStep);
             this.Name = "frmSheduling";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmSheduling";
             this.tabStep.ResumeLayout(false);
+            this.tabPageStep1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -107,5 +120,6 @@
         private System.Windows.Forms.TabPage tabPageStep2;
         private System.Windows.Forms.TabPage tabPageStep3;
         private System.Windows.Forms.TabPage tabPageStep4;
+        private ucStep_SelectSubjects ucStep_SelectSubjects1;
     }
 }

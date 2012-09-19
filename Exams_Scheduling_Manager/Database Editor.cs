@@ -12,16 +12,9 @@ namespace Exams_Scheduling_Manager
     public partial class frmDatabaseEditor : Form
     {
         //DATABASE dbViewer;
-        public frmDatabaseEditor(String ConnectionString)
+        public frmDatabaseEditor()
         {
             InitializeComponent();
-            //dbViewer = new DATABASE(ConnectionString);
-            Global.Connect(ConnectionString);
-        }
-
-        private void frmDatabaseEditor_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Environment.Exit(0);
         }
     }
 }
