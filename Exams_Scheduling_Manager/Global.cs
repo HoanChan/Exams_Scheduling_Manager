@@ -126,18 +126,6 @@ namespace Exams_Scheduling_Manager
             sqlCommand.CommandText = Query;
             return sqlCommand.ExecuteReader();
         }
-        /// <summary>
-        /// Ch?y d?ng l?nh, tr? v? gi? tr? trong ? ??u ti?n trong b?ng (? ? d?ng 1 c?t 1)
-        /// </summary>
-        /// <param name="Query">L?nh c?n ch?y</param>
-        /// <returns>Gi? tr? c?a ?</returns>
-        public static object RunScalar(string Query)
-        {
-
-            SqlCommand sqlCommand = new SqlCommand();
-            sqlCommand.Connection = SQLConnection;
-            sqlCommand.CommandText = Query;
-            return sqlCommand.ExecuteScalar();
-        }
+      
     }
 }
