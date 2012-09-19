@@ -59,6 +59,12 @@
     <Compile Include="frmConnection.designer.cs">
       <DependentUpon>frmConnection.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSheduling.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSheduling.Designer.cs">
+      <DependentUpon>frmSheduling.cs</DependentUpon>
+    </Compile>
     <Compile Include="Global.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -67,6 +73,12 @@
     </Compile>
     <Compile Include="ucCourseRegistration.Designer.cs">
       <DependentUpon>ucCourseRegistration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucRoom.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucRoom.Designer.cs">
+      <DependentUpon>ucRoom.cs</DependentUpon>
     </Compile>
     <Compile Include="ucStudents.cs">
       <SubType>UserControl</SubType>
@@ -86,6 +98,9 @@
     <EmbeddedResource Include="frmConnection.resx">
       <DependentUpon>frmConnection.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmSheduling.resx">
+      <DependentUpon>frmSheduling.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -97,6 +112,9 @@
     </Compile>
     <EmbeddedResource Include="ucCourseRegistration.resx">
       <DependentUpon>ucCourseRegistration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucRoom.resx">
+      <DependentUpon>ucRoom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucStudents.resx">
       <DependentUpon>ucStudents.cs</DependentUpon>
