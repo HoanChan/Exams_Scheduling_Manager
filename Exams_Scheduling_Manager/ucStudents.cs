@@ -18,13 +18,43 @@ namespace Exams_Scheduling_Manager
             dataGridView.ReadOnly = true;
         }
 
+        private String TenBacHoc(String MaBacHoc)
+        {
+            switch (MaBacHoc)
+            {
+                case "0": return "0";
+                case "1": return "Đại học chính quy";
+                case "2": return "Đại học chính quy Khối K - 3/7";
+                case "3": return "Đại học chính quy hệ chuyển tiếp";
+                case "4": return "Đại học tại chức";
+                case "5": return "Đại học tại chức khối K - 3/7";
+                case "6": return "Đại học tại chức hệ hoàn chỉnh";
+                case "7": return "Cao đẳng chính quy";
+                case "8": return "8";
+                case "9": return "9";
+                case "B": return "ĐHCQ (Bằng thứ 2)";
+                case "D": return "Trung cấp chuyên nghiệp chính quy";
+                case "F": return "F";
+                case "S1": return "K08101SP";
+                case "T1": return "T1";
+                case "T2": return "T2";
+                case "T3": return "T3";
+                case "T4": return "T4";
+                case "T5": return "T5";
+                case "T7": return "T7";
+                case "T9": return "ĐHCQ - Các ngành Sư phạm kỹ thuật";
+            }
+            return "";
+        }
+
         private void ComboBacHoc(ComboBox cbo)
         {
             DataTable dTable3 = new DataTable();
             Global.FillTable("Select * From bachoc", dTable3);
             foreach (DataRow dRow in dTable3.Rows)
             {
-                cbo.Items.Add(new SQLItem(dRow["MaBacHoc"], dRow["TenBacHoc"]));
+                string MaBacHoc = dRow["MaBacHoc"].ToString().Trim();
+                cbo.Items.Add(new SQLItem(dRow["MaBacHoc"], (object)TenBacHoc(MaBacHoc)));
             }
             cbo.Items.Add(new SQLItem(null, "?"));
             cbo.SelectedIndex = 1;
@@ -40,20 +70,19 @@ namespace Exams_Scheduling_Manager
 
         private void ShowClass()
         {
-            Global.ShowOnGirdView(dataGridView, "Select [MaSinhVien],[Ho],[Ten],[Phai],[NgaySinh] From sinhvien Where Lop = '" + cboClass.SelectedItem.ToString() + "'");
+            Global.ShowOnGirdView(dataGridView, "Select [MaSinhVien],[Ho],[Ten],[Phai],[NgaySinh],[Lop] From sinhvien Where Lop = '" + cboClass.SelectedItem.ToString() + "'");
         }
 
         private void ShowFaculty()
         {
             String themHeDaoTao = ((SQLItem)cboHeDaoTao.SelectedItem).ID != null ? " and khoi.BacHoc= '" + ((SQLItem)cboHeDaoTao.SelectedItem).ID.ToString() + "'" : "";
-
-            Global.ShowOnGirdView(dataGridView, "select [MaSinhVien],[Ho],[Ten],[Phai],[NgaySinh] from sinhvien, khoi, khoa, lop where sinhvien.lop = lop.MaLop and lop.MaKhoi = khoi.MaKhoi and khoa.MaKhoa = khoi.KhoaQL and khoa.MaKhoa = '" + ((SQLItem)cboFaculty.SelectedItem).ID.ToString() + "'" + themHeDaoTao);
+            Global.ShowOnGirdView(dataGridView, "select [MaSinhVien],[Ho],[Ten],[Phai],[NgaySinh],[Lop] from sinhvien, khoi, khoa, lop where sinhvien.lop = lop.MaLop and lop.MaKhoi = khoi.MaKhoi and khoa.MaKhoa = khoi.KhoaQL and khoa.MaKhoa = '" + ((SQLItem)cboFaculty.SelectedItem).ID.ToString() + "'" + themHeDaoTao);
 
         }
 
         private void ShowHeDaoTao()
         {
-            Global.ShowOnGirdView(dataGridView, "Select [MaSinhVien],[Ho],[Ten],[Phai],[NgaySinh] From sinhvien, lop, khoi  where lop = Malop and lop.Makhoi = khoi.MaKhoi and BacHoc = '" + ((SQLItem)cboHeDaoTao.SelectedItem).ID.ToString() + "'");
+            Global.ShowOnGirdView(dataGridView, "Select [MaSinhVien],[Ho],[Ten],[Phai],[NgaySinh],[Lop] From sinhvien, lop, khoi  where lop = Malop and lop.Makhoi = khoi.MaKhoi and BacHoc = '" + ((SQLItem)cboHeDaoTao.SelectedItem).ID.ToString() + "'");
         }
 
         private void ShowAllStudents()
@@ -63,6 +92,7 @@ namespace Exams_Scheduling_Manager
 
         private void btnShow_Click(object sender, EventArgs e)
         {
+            panel1.Enabled = false;
             if (((SQLItem)cboClass.SelectedItem).ID != null)
             {
                 ShowClass();
@@ -79,6 +109,7 @@ namespace Exams_Scheduling_Manager
                     }
                     else
                         ShowAllStudents();
+            panel1.Enabled = true;
         }
 
         private void SeachFaculty(String ID, ComboBox cboFaculty)
@@ -243,6 +274,7 @@ namespace Exams_Scheduling_Manager
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            panel1.Enabled = false;
             txtMSSV.Text =
             txtLastName.Text =
             txtFristName.Text = "";
@@ -252,10 +284,12 @@ namespace Exams_Scheduling_Manager
             dateBorn.Value = DateTime.Parse("01/01/1990");
             cboBacHocAdd.SelectedIndex = 1;
             txtMSSV.Focus();
+            IsModifyMode = false;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            panel1.Enabled = true;
             pnlEdit.Visible = false;
         }
 
@@ -273,7 +307,33 @@ namespace Exams_Scheduling_Manager
         {
             if (IsModifyMode)
             {
+                if (CheckMSSV())
+                {
+                    SqlCommand mySqlCommand = Global.SQLConnection.CreateCommand();
+                    mySqlCommand.CommandText = "UPDATE sinhvien"
+                                                + " SET MaSinhVien = @MaSinhVien, Ho = @Ho, Ten = @Ten, Phai = @Phai, Lop = @Lop, NgaySinh = @NgaySinh"
+                                                + " WHERE MaSinhVien = @MaSVCu";
+                    mySqlCommand.Parameters.AddWithValue("@MaSinhVien", txtMSSV.Text);
+                    mySqlCommand.Parameters.AddWithValue("@Ho", txtLastName.Text);
+                    mySqlCommand.Parameters.AddWithValue("@Ten", txtFristName.Text);
+                    mySqlCommand.Parameters.AddWithValue("@Phai", (cboSex.SelectedItem.ToString()) == "Nam" ? 1 : 0);
+                    mySqlCommand.Parameters.AddWithValue("@NgaySinh", dateBorn.Value);
+                    mySqlCommand.Parameters.AddWithValue("@Lop", ((SQLItem)cboClassAdd.SelectedItem).ID.ToString());
+                    mySqlCommand.Parameters.AddWithValue("@MaSVCu", dataGridView.SelectedRows[0].Cells["MaSinhVien"].Value.ToString());
 
+                    if (mySqlCommand.ExecuteNonQuery() > 0)
+                    {
+                        MessageBox.Show("Sửa đổi thành công", "Thông báo");
+                        panel1.Enabled = true;
+                        btnShow.PerformClick();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sửa đổi không thực hiện được", "Thông báo");
+                    }
+                }
+                pnlEdit.Visible = false;
+                panel1.Enabled = true;
             }
             else
             {
@@ -287,22 +347,149 @@ namespace Exams_Scheduling_Manager
                     mySqlCommand.Parameters.AddWithValue("@Phai", (cboSex.SelectedItem.ToString()) == "Nam" ? 1 : 0);
                     mySqlCommand.Parameters.AddWithValue("@Lop", ((SQLItem)cboClassAdd.SelectedItem).ID.ToString());
                     mySqlCommand.Parameters.AddWithValue("@NgaySinh", dateBorn.Value);
-                    if (mySqlCommand.ExecuteNonQuery() > 0)
+
+                    try
                     {
-                        MessageBox.Show("Thêm mới thành công", "Thông báo");
-                        cboClass.SelectedValue = ((SQLItem)cboClassAdd.SelectedItem).ID.ToString();
-                        btnShow.PerformClick();
+                        if (mySqlCommand.ExecuteNonQuery() > 0)
+                        {
+                            MessageBox.Show("Thêm mới thành công", "Thông báo");
+                            cboHeDaoTao.SelectedIndex = 1;
+                            btnShow.PerformClick();
+                        }
                     }
-                    else
+                    catch
                     {
                         MessageBox.Show("Thêm mới không thực hiện được", "Thông báo");
                     }
+                    panel1.Enabled = true;
                     pnlEdit.Visible = false;
                 }
                 else
                 {
                 }
             }
+        }
+
+        private Boolean CheckMSSV()
+        {
+            Boolean Ok = false;
+            if (txtMSSV.Text != dataGridView.SelectedRows[0].Cells["MaSinhVien"].Value.ToString())
+            {
+                Ok = true;
+                if (Global.RunNonQuery("select * from monhoc where MaMonHoc = " + txtMSSV.Text) > 0)
+                {
+                    errorProvider.SetError(txtMSSV, "Đã được sử dụng, đề nghị nhập cái khác");
+                    Ok = false;
+                }
+                else
+                    Ok = CheckInfo(1);
+            }
+            return Ok;
+        }
+
+        private Boolean CheckLastName()
+        {
+            Boolean ok = false;
+            if (txtLastName.Text != dataGridView.SelectedRows[0].Cells["Ho"].Value.ToString())
+                ok = CheckInfo(2);
+            return ok;
+        }
+
+        private Boolean CheckFirstName()
+        {
+            Boolean ok = false;
+            if (txtFristName.Text != dataGridView.SelectedRows[0].Cells["Ten"].Value.ToString())
+                ok = CheckInfo(3);
+            return ok;
+        }
+
+        private Boolean CheckDateBorn()
+        {
+            Boolean ok = false;
+            if (dateBorn.Value != DateTime.Parse(dataGridView.SelectedRows[0].Cells["NgaySinh"].Value.ToString()))
+                ok = CheckInfo(4);
+            return ok;
+        }
+
+        private Boolean CheckClass()
+        {
+            Boolean ok = false;
+            if (((SQLItem)cboClassAdd.SelectedItem).ID.ToString() != dataGridView.SelectedRows[0].Cells["Lop"].Value.ToString())
+                ok = CheckInfo(5);
+            return ok;
+        }
+
+        private Boolean CheckInfo(int i)
+        {
+            Boolean ok = true;
+            if (i == 1)
+            {
+                if (txtMSSV.Text.Length != 8)
+                {
+                    errorProvider.SetError(txtMSSV, "Phải có đúng 8 ký tự");
+                    ok = false;
+                }
+            }
+            else
+                if (i == 2)
+                {
+                    if (txtLastName.Text.Length > 20)
+                    {
+                        errorProvider.SetError(txtLastName, "Không được quá 20 ký tự");
+                        ok = false;
+                    }
+                    else if (txtLastName.Text == "")
+                    {
+                        errorProvider.SetError(txtLastName, "Chưa nhập");
+                        ok = false;
+                    }
+                }
+                else
+                    if (i == 3)
+                    {
+                        if (txtFristName.Text.Length > 10)
+                        {
+                            errorProvider.SetError(txtFristName, "Không được quá 10 ký tự");
+                            ok = false;
+                        }
+                        else if (txtFristName.Text == "")
+                        {
+                            errorProvider.SetError(txtFristName, "Chưa nhập");
+                            ok = false;
+                        }
+                    }
+                    else
+                        if (i == 4)
+                        {
+
+                            if (dateBorn.Value > DateTime.Now)
+                            {
+                                errorProvider.SetError(dateBorn, "Ngày Sinh chưa hợp lệ");
+                                ok = false;
+                            }
+                            else
+                                if (dateBorn.Value.Year + 17 > DateTime.Now.Year)
+                                {
+                                    errorProvider.SetError(dateBorn, "Chưa đủ tuổi học");
+                                    ok = false;
+                                }
+                        }
+                        else
+                        {
+                            if (((SQLItem)cboClassAdd.SelectedItem).ID == null)
+                            {
+                                errorProvider.SetError(cboClassAdd, "Chưa chọn lớp");
+                                ok = false;
+                            }
+                            else
+                                if (Global.RunScalar("select * from lop where MaLop = '" + ((SQLItem)cboClassAdd.SelectedItem).ID.ToString() + "'") == null)
+                                {
+                                    errorProvider.SetError(cboClassAdd, "Lớp ko có trong hệ thống");
+                                    ok = false;
+                                }
+                        }
+
+            return ok;
         }
 
         private Boolean CheckAddModeInfo()
@@ -315,59 +502,82 @@ namespace Exams_Scheduling_Manager
             }
             else
             {
-                if (txtMSSV.Text.Length != 8)
-                {
-                    errorProvider.SetError(txtMSSV, "Phải có đúng 8 ký tự");
-                    ok = false;
-                }
+                ok = CheckInfo(1);
             }
 
-            if (txtLastName.Text.Length > 20)
-            {
-                errorProvider.SetError(txtLastName, "Không được quá 20 ký tự");
-                ok = false;
-            }
-            else if (txtLastName.Text == "")
-            {
-                errorProvider.SetError(txtLastName, "Chưa nhập");
-                ok = false;
-            }
+            ok = CheckInfo(2);
+            ok = CheckInfo(3);
+            ok = CheckInfo(4);
+            ok = CheckInfo(5);
 
-            if (txtFristName.Text.Length > 10)
-            {
-                errorProvider.SetError(txtFristName, "Không được quá 10 ký tự");
-                ok = false;
-            }
-            else if (txtFristName.Text == "")
-            {
-                errorProvider.SetError(txtFristName, "Chưa nhập");
-                ok = false;
-            }
-
-            if (dateBorn.Value > DateTime.Now)
-            {
-                errorProvider.SetError(dateBorn, "Ngày Sinh chưa hợp lệ");
-                ok = false;
-            }
-            else
-                if (dateBorn.Value.Year + 17 > DateTime.Now.Year)
-                {
-                    errorProvider.SetError(dateBorn, "Chưa đủ tuổi học");
-                    ok = false;
-                }
-
-            if (((SQLItem)cboClassAdd.SelectedItem).ID == null)
-            {
-                errorProvider.SetError(cboClassAdd, "Chưa chọn lớp");
-                ok = false;
-            }
-            else
-                if (Global.RunScalar("select * from lop where MaLop = '" + ((SQLItem)cboClassAdd.SelectedItem).ID.ToString() + "'") == null)
-                {
-                    errorProvider.SetError(cboClassAdd, "Lớp ko có trong hệ thống");
-                    ok = false;
-                }
             return ok;
+        }
+
+        private void btnModify_Click(object sender, EventArgs e)
+        {
+            if (dataGridView.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Đề nghị chọn dòng cần sửa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                panel1.Enabled = false;
+                IsModifyMode = false;
+                txtMSSV.Text = dataGridView.SelectedRows[0].Cells["MaSinhVien"].Value.ToString();
+                txtLastName.Text = dataGridView.SelectedRows[0].Cells["Ho"].Value.ToString();
+                txtFristName.Text = dataGridView.SelectedRows[0].Cells["Ten"].Value.ToString();
+                dateBorn.Value = DateTime.Parse(dataGridView.SelectedRows[0].Cells["NgaySinh"].Value.ToString());
+                cboSex.SelectedIndex = (dataGridView.SelectedRows[0].Cells["Phai"].Value.ToString() == "1") ? 0 : 1;
+                IsModifyMode = true;
+                ComboBacHoc(cboBacHocAdd);
+
+                String lop = dataGridView.SelectedRows[0].Cells["Lop"].Value.ToString();
+
+                DataTable dTable = new DataTable();
+                Global.FillTable("Select [BacHoc],[KhoaQL] From Khoi,lop where lop.Makhoi = Khoi.Makhoi and Malop= '" + lop + "'", dTable);
+                bool ok = true;
+
+                foreach (DataRow dRow in dTable.Rows)
+                {
+                    foreach (SQLItem item in cboBacHocAdd.Items)
+                        if (item.ID.ToString() == dRow["BacHoc"].ToString())
+                        {
+                            cboBacHocAdd.SelectedItem = item;
+                            ok = false;
+                            break;
+                        }
+                    if (!ok)
+                        break;
+                }
+
+
+                ok = true;
+
+                foreach (DataRow dRow in dTable.Rows)
+                {
+                    foreach (SQLItem item in cboFacultyAdd.Items)
+                    {
+                        if (item.ID != null)
+                            if (item.ID.ToString() == dRow["KhoaQL"].ToString())
+                            {
+                                cboFacultyAdd.SelectedItem = item;
+                                ok = false;
+                                break;
+                            }
+                    }
+                    if (!ok)
+                        break;
+                }
+
+
+                foreach (SQLItem items in cboClassAdd.Items)
+                {
+                    if (items.ID != null)
+                        if (items.ID.ToString() == lop)
+                            cboClassAdd.SelectedItem = items;
+                }
+                pnlEdit.Visible = true;
+            }
         }
     }
 }
