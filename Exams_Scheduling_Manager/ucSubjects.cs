@@ -136,7 +136,7 @@ namespace Exams_Scheduling_Manager
                     mySqlCommand.Parameters.AddWithValue("@BoMonQL", ((SQLItem)cboManagerSubject.SelectedItem).ID);
                     mySqlCommand.Parameters.AddWithValue("@GhiChu", (txtInfo.Text.Length == 0 ? DBNull.Value : (object)txtInfo.Text));
 
-                    if (mySqlCommand.ExecuteNonQuery() != -1)
+                    if (mySqlCommand.ExecuteNonQuery() > 0)
                     {
                         MessageBox.Show("Thêm mới thành công", "Thông báo");
                         btnShow.PerformClick();
@@ -156,7 +156,7 @@ namespace Exams_Scheduling_Manager
         private Boolean CheckAddModeInfo()
         {
             Boolean Ok = true;
-            if (Global.RunNonQuery("select * from monhoc where MaMonHoc = " + txtID.Text) != -1)
+            if (Global.RunNonQuery("select * from monhoc where MaMonHoc = " + txtID.Text) > 0)
             {
                 errorProvider.SetError(txtID, "Đã được sử dụng, đề nghị nhập cái khác");
                 Ok = false;
@@ -212,14 +212,39 @@ namespace Exams_Scheduling_Manager
                 mySqlCommand.CommandText = "DELETE FROM MonHoc WHERE MaMonHoc = @MaMonHoc";
                 mySqlCommand.Parameters.AddWithValue("@MaMonHoc", dataGridView.SelectedRows[0].Cells["MaMonHoc"].Value);
 
-                if (mySqlCommand.ExecuteNonQuery() != -1)
+                try
                 {
-                    MessageBox.Show("Xóa thành công", "Thông báo");
-                    btnShow.PerformClick();
+                    if (mySqlCommand.ExecuteNonQuery() > 0)
+                    {
+                        MessageBox.Show("Xóa thành công", "Thông báo");
+                        btnShow.PerformClick();
+                    }
                 }
-                else
+                catch
                 {
-                    MessageBox.Show("Xóa không thực hiện được", "Thông báo");
+                    if (MessageBox.Show("Môn học này đã có sinh viên đăng ký, bạn có muốn xóa hay không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        SqlCommand mySqlCommand2 = Global.SQLConnection.CreateCommand();
+                        mySqlCommand2.CommandText = "DELETE FROM tkbmacdinhsinhvien WHERE MaMonHoc = @MaMonHoc";
+                        mySqlCommand2.Parameters.AddWithValue("@MaMonHoc", dataGridView.SelectedRows[0].Cells["MaMonHoc"].Value);
+                        mySqlCommand2.ExecuteNonQuery();
+
+                        SqlCommand mySqlCommand1 = Global.SQLConnection.CreateCommand();
+                        mySqlCommand1.CommandText = "DELETE FROM pdkmh  WHERE MaMonHoc = @MaMonHoc";
+                        mySqlCommand1.Parameters.AddWithValue("@MaMonHoc", dataGridView.SelectedRows[0].Cells["MaMonHoc"].Value);
+                        mySqlCommand1.ExecuteNonQuery();
+
+                        SqlCommand mySqlCommand3 = Global.SQLConnection.CreateCommand();
+                        mySqlCommand3.CommandText = "DELETE FROM ChuongTrinhHoc  WHERE MaMonHoc = @MaMonHoc";
+                        mySqlCommand3.Parameters.AddWithValue("@MaMonHoc", dataGridView.SelectedRows[0].Cells["MaMonHoc"].Value);
+                        mySqlCommand3.ExecuteNonQuery();
+
+                        if (mySqlCommand.ExecuteNonQuery() > 0)
+                        {
+                            MessageBox.Show("Xóa thành công", "Thông báo");
+                            btnShow.PerformClick();
+                        }
+                    }
                 }
             }
         }
