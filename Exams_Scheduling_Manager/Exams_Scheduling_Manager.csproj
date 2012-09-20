@@ -91,6 +91,12 @@
     <Compile Include="ucRoom.Designer.cs">
       <DependentUpon>ucRoom.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucStep_SelectStudents.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucStep_SelectStudents.Designer.cs">
+      <DependentUpon>ucStep_SelectStudents.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucStep_SelectSubjects.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -141,6 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ucRoom.resx">
       <DependentUpon>ucRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucStep_SelectStudents.resx">
+      <DependentUpon>ucStep_SelectStudents.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucStep_SelectSubjects.resx">
       <DependentUpon>ucStep_SelectSubjects.cs</DependentUpon>
