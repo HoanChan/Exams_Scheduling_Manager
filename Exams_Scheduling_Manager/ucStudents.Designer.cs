@@ -241,7 +241,7 @@
             this.pnlEdit.Controls.Add(this.label10);
             this.pnlEdit.Location = new System.Drawing.Point(190, 0);
             this.pnlEdit.Name = "pnlEdit";
-            this.pnlEdit.Size = new System.Drawing.Size(395, 337);
+            this.pnlEdit.Size = new System.Drawing.Size(395, 315);
             this.pnlEdit.TabIndex = 3;
             this.pnlEdit.Visible = false;
             // 
