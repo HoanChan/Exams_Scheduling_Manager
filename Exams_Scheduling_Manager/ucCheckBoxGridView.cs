@@ -28,8 +28,14 @@ namespace Exams_Scheduling_Manager
         public void EndUpdate()
         {
             ReadOnly = false;
+            //TotalCheckBoxes = RowCount;
+            //TotalCheckedCheckBoxes = 0;
+            foreach (DataGridViewRow Row in Rows)
+                ((DataGridViewCheckBoxCell)Row.Cells["chkBxSelect"]).Value = true;
+
+            RefreshEdit();
             TotalCheckBoxes = RowCount;
-            TotalCheckedCheckBoxes = 0;
+            TotalCheckedCheckBoxes = RowCount;
         }
         private void TheCellBeginEdit(object sender, DataGridViewCellCancelEventArgs e) {
           if (e.ColumnIndex != 0) e.Cancel = true;
@@ -74,7 +80,7 @@ namespace Exams_Scheduling_Manager
             HeaderCheckBox = new CheckBox();
 
             HeaderCheckBox.Size = new Size(15, 15);
-
+            HeaderCheckBox.ThreeState = true;
             //Add the CheckBox into the DataGridView
             this.Controls.Add(HeaderCheckBox);
         }
@@ -96,7 +102,10 @@ namespace Exams_Scheduling_Manager
         private void HeaderCheckBoxClick(CheckBox HCheckBox)
         {
             IsHeaderCheckBoxClicked = true;
-
+            if (HeaderCheckBox.CheckState == CheckState.Indeterminate)
+            {
+                HeaderCheckBox.CheckState = CheckState.Unchecked;
+            }
             foreach (DataGridViewRow Row in Rows)
                 ((DataGridViewCheckBoxCell)Row.Cells["chkBxSelect"]).Value = HCheckBox.Checked;
 
@@ -119,9 +128,19 @@ namespace Exams_Scheduling_Manager
 
                 //Change state of the header CheckBox.
                 if (TotalCheckedCheckBoxes < TotalCheckBoxes)
-                    HeaderCheckBox.Checked = false;
+                {
+                    //HeaderCheckBox.Checked = false;
+                    HeaderCheckBox.CheckState = CheckState.Unchecked;
+                    if (TotalCheckedCheckBoxes != 0)
+                    {
+                        HeaderCheckBox.CheckState = CheckState.Indeterminate;
+                    }
+                }
                 else if (TotalCheckedCheckBoxes == TotalCheckBoxes)
-                    HeaderCheckBox.Checked = true;
+                {
+                    //HeaderCheckBox.Checked = true;
+                    HeaderCheckBox.CheckState = CheckState.Checked;
+                }
             }
         }
     }
