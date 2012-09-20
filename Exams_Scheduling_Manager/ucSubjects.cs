@@ -118,15 +118,41 @@ namespace Exams_Scheduling_Manager
         {
             if (IsModifyMode)
             {
-
+                if (CheckModifyModeInfo())
+                {
+                    SqlCommand mySqlCommand = Global.SQLConnection.CreateCommand();
+                    mySqlCommand.CommandText = "UPDATE MonHoc"
+                                                + " SET MaMonHoc = @MaMonHoc, TenMonHoc = @TenMonHoc, TCLyThuyet = @TCLyThuyet, TCThucHanh = @TCThucHanh, MonThiNghiem = @MonThiNghiem, KhoaXepLich = @KhoaXepLich, BoMonQL = @BoMonQL, GhiChu = @GhiChu"
+                                                + " WHERE MaMonHoc = @MaMonHocCu";
+                    mySqlCommand.Parameters.AddWithValue("@MaMonHoc", txtID.Text);
+                    mySqlCommand.Parameters.AddWithValue("@TenMonHoc", txtName.Text);
+                    mySqlCommand.Parameters.AddWithValue("@TCLyThuyet", nudTheoryCredit.Value);
+                    mySqlCommand.Parameters.AddWithValue("@TCThucHanh", nudPracticesCredit.Value);
+                    mySqlCommand.Parameters.AddWithValue("@MonThiNghiem", (chbIsExperimentalSubject.Checked ? 1 : 0));
+                    mySqlCommand.Parameters.AddWithValue("@KhoaXepLich", (cboSchedulingBy.SelectedIndex == -1 ? DBNull.Value : ((SQLItem)cboSchedulingBy.SelectedItem).ID));
+                    mySqlCommand.Parameters.AddWithValue("@BoMonQL", ((SQLItem)cboManagerSubject.SelectedItem).ID);
+                    mySqlCommand.Parameters.AddWithValue("@GhiChu", (txtInfo.Text.Length == 0 ? DBNull.Value : (object)txtInfo.Text));
+                    mySqlCommand.Parameters.AddWithValue("@MaMonHocCu", dataGridView.SelectedRows[0].Cells["MaMonHoc"].Value.ToString());
+                    if (mySqlCommand.ExecuteNonQuery() > 0)
+                    {
+                        MessageBox.Show("Sửa đổi thành công", "Thông báo");
+                        pnlEdit.Visible = false;
+                        pnlCommands.Enabled = true;
+                        btnShow.PerformClick();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sửa đổi không thực hiện được", "Thông báo");
+                    }
+                }
             }
             else
             {
                 if (CheckAddModeInfo())
                 {
                     SqlCommand mySqlCommand = Global.SQLConnection.CreateCommand();
-                    mySqlCommand.CommandText = "INSERT INTO MonHoc (MaMonHoc, TenMonHoc, TCLyThuyet, TCThucHanh, MonThiNghiem, KhoaXepLich, BoMonQL, GhiChu) VALUES (@MaMonHoc, @TenMonHoc, @TCLyThuyet, @TCThucHanh, @MonThiNghiem, @KhoaXepLich, @BoMonQL, @GhiChu)";
-
+                    mySqlCommand.CommandText = "INSERT INTO MonHoc (MaMonHoc, TenMonHoc, TCLyThuyet, TCThucHanh, MonThiNghiem, KhoaXepLich, BoMonQL, GhiChu)"
+                                                + " VALUES (@MaMonHoc, @TenMonHoc, @TCLyThuyet, @TCThucHanh, @MonThiNghiem, @KhoaXepLich, @BoMonQL, @GhiChu)";
                     mySqlCommand.Parameters.AddWithValue("@MaMonHoc", txtID.Text);
                     mySqlCommand.Parameters.AddWithValue("@TenMonHoc", txtName.Text);
                     mySqlCommand.Parameters.AddWithValue("@TCLyThuyet", nudTheoryCredit.Value);
@@ -139,35 +165,27 @@ namespace Exams_Scheduling_Manager
                     if (mySqlCommand.ExecuteNonQuery() > 0)
                     {
                         MessageBox.Show("Thêm mới thành công", "Thông báo");
+                        pnlEdit.Visible = false;
+                        pnlCommands.Enabled = true;
                         btnShow.PerformClick();
                     }
                     else
                     {
                         MessageBox.Show("Thêm mới không thực hiện được", "Thông báo");
+                        pnlEdit.Visible = false;
+                        pnlCommands.Enabled = true;
                     }
-                    pnlEdit.Visible = false;
-                }
-                else
-                {
                 }
             }
         }
-        
-        private Boolean CheckAddModeInfo()
+        private Boolean CheckInfo()
         {
             Boolean Ok = true;
-            if (Global.RunNonQuery("select * from monhoc where MaMonHoc = " + txtID.Text) > 0)
+
+            if (txtID.Text.Length != 7)
             {
-                errorProvider.SetError(txtID, "Đã được sử dụng, đề nghị nhập cái khác");
+                errorProvider.SetError(txtID, "Phải có đúng 7 ký tự");
                 Ok = false;
-            }
-            else
-            {
-                if (txtID.Text.Length != 7)
-                {
-                    errorProvider.SetError(txtID, "Phải có đúng 7 ký tự");
-                    Ok = false;
-                }
             }
 
             if (txtName.Text.Length > 60)
@@ -194,10 +212,42 @@ namespace Exams_Scheduling_Manager
             }
             return Ok;
         }
+        private Boolean CheckAddModeInfo()
+        {
+            Boolean Ok = true;
+            if (Global.RunScalar("SELECT MaMonHoc FROM MonHoc WHERE MaMonHoc = '" + txtID.Text + "'") != null)
+            {
+                errorProvider.SetError(txtID, "Đã được sử dụng, đề nghị nhập cái khác");
+                Ok = false;
+            }
+            if (!CheckInfo())
+            {
+                Ok = false;
+            }
+            return Ok;
+        }
+        private Boolean CheckModifyModeInfo()
+        {
+            Boolean Ok = true;
+            if (txtID.Text != dataGridView.SelectedRows[0].Cells["MaMonHoc"].Value.ToString())
+            {
+                if (Global.RunScalar("SELECT MaMonHoc FROM MonHoc WHERE MaMonHoc = '" + txtID.Text + "'") != null)
+                {
+                    errorProvider.SetError(txtID, "Đã được sử dụng, đề nghị nhập cái khác");
+                    Ok = false;
+                }
+            }
+            if (!CheckInfo())
+            {
+                Ok = false;
+            }
+            return Ok;
+        }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             pnlEdit.Visible = false;
+            pnlCommands.Enabled = true;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -246,6 +296,42 @@ namespace Exams_Scheduling_Manager
                         }
                     }
                 }
+            }
+        }
+
+        private void btnModify_Click(object sender, EventArgs e)
+        {
+            if (dataGridView.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Đề nghị chọn dòng cần sửa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                txtID.Text = dataGridView.SelectedRows[0].Cells["MaMonHoc"].Value.ToString();
+                txtName.Text = dataGridView.SelectedRows[0].Cells["TenMonHoc"].Value.ToString();
+                txtInfo.Text = dataGridView.SelectedRows[0].Cells["GhiChu"].Value.ToString();
+                nudPracticesCredit.Value = Convert.ToDecimal(dataGridView.SelectedRows[0].Cells["TCThucHanh"].Value);
+                nudTheoryCredit.Value = Convert.ToDecimal(dataGridView.SelectedRows[0].Cells["TCLyThuyet"].Value);
+                chbIsExperimentalSubject.Checked = Convert.ToDecimal(dataGridView.SelectedRows[0].Cells["MonThiNghiem"].Value) == 1 ? true : false;
+                foreach (SQLItem item in cboSchedulingBy.Items)
+                {
+                    if (item.ID.ToString() == dataGridView.SelectedRows[0].Cells["KhoaXepLich"].Value.ToString())
+                    {
+                        cboSchedulingBy.SelectedItem = item;
+                        break;
+                    }
+                }
+                foreach (SQLItem item in cboManagerSubject.Items)
+                {
+                    if (item.ID.ToString() == dataGridView.SelectedRows[0].Cells["BoMonQL"].Value.ToString())
+                    {
+                        cboManagerSubject.SelectedItem = item;
+                        break;
+                    }
+                }
+                IsModifyMode = true;
+                pnlEdit.Visible = true;
+                pnlCommands.Enabled = false;
             }
         }
     }

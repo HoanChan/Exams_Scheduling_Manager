@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -88,12 +88,14 @@ namespace Exams_Scheduling_Manager
                 dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.White;
                 dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
             }
+            dataGridView.AllowUserToAddRows = false;
+            dataGridView.AllowUserToDeleteRows = false;
         }
         /// <summary>
-        /// Ch?y d?ng l?nh kh?ng tr? v? b?ng
+        /// Chạy dòng lệnh không trả về bảng
         /// </summary>
-        /// <param name="Query">L?nh c?n ch?y</param>
-        /// <returns>S? l??ng h?ng b? ?nh h??ng</returns>
+        /// <param name="Query">Lệnh cần chạy</param>
+        /// <returns>Số lượng hàng bị ảnh hưởng</returns>
         public static int RunNonQuery(string Query)
         {
             SqlCommand sqlCommand = new SqlCommand();
@@ -102,10 +104,10 @@ namespace Exams_Scheduling_Manager
             return sqlCommand.ExecuteNonQuery();
         }
         /// <summary>
-        /// Ch?y d?ng l?nh, tr? v? gi? tr? trong ? ??u ti?n trong b?ng (? ? d?ng 1 c?t 1)
+        /// Chạy dòng lệnh, trả về giá trị trong ô đầu tiên trong bảng (ô ở dòng 1 cột 1)
         /// </summary>
-        /// <param name="Query">L?nh c?n ch?y</param>
-        /// <returns>Gi? tr? c?a ?</returns>
+        /// <param name="Query">Lệnh cần chạy</param>
+        /// <returns>Giá trị của ô</returns>
         public static object RunScalar(string Query)
         {
             SqlCommand sqlCommand = new SqlCommand();
@@ -115,10 +117,10 @@ namespace Exams_Scheduling_Manager
         }
 
         /// <summary>
-        /// Ch?y d?ng l?nh tr? v? m?t b?ng
+        /// Chạy dòng lệnh trả về một bảng
         /// </summary>
-        /// <param name="Query">L?nh c?n ch?y</param>
-        /// <returns>K?t qu?</returns>
+        /// <param name="Query">Lệnh cần chạy</param>
+        /// <returns>Kết quả</returns>
         public static SqlDataReader RunReader(string Query)
         {
             SqlCommand sqlCommand = new SqlCommand();
