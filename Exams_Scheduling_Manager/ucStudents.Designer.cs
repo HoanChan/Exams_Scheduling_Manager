@@ -273,6 +273,7 @@
             // 
             // dateBorn
             // 
+            this.dateBorn.CustomFormat = "";
             this.dateBorn.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateBorn.Location = new System.Drawing.Point(114, 119);
             this.dateBorn.Name = "dateBorn";
