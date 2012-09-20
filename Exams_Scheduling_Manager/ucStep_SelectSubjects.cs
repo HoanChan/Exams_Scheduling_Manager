@@ -62,18 +62,20 @@ namespace Exams_Scheduling_Manager
 
         private void btnShow_Click(object sender, EventArgs e)
         {
+            dataGridView.BeginUpdate();
             if (cboFaculty.Enabled)
             {
-                Global.ShowOnGirdView(dataGridView, "select distinct monhoc.MaMonHoc, monhoc.TenMonHoc from monhoc, pdkmh, bomon, khoa"
+                Global.ShowOnGridView(dataGridView, "select distinct monhoc.MaMonHoc, monhoc.TenMonHoc from monhoc, pdkmh, bomon, khoa"
                                                     + " where monhoc.MaMonHoc = pdkmh.MaMonHoc and bomon.MaBoMon = monhoc.BoMonQL and khoa.MaKhoa = bomon.KhoaQL"
                                                     + " and khoa.MaKhoa = '" + ((SQLItem)cboFaculty.SelectedItem).ID + "'");
             }
             else
             {
-                Global.ShowOnGirdView(dataGridView, "select distinct monhoc.MaMonHoc, monhoc.TenMonHoc from monhoc, pdkmh, bomon, khoa"
+                Global.ShowOnGridView(dataGridView, "select distinct monhoc.MaMonHoc, monhoc.TenMonHoc from monhoc, pdkmh, bomon, khoa"
                                                     + " where monhoc.MaMonHoc = pdkmh.MaMonHoc and bomon.MaBoMon = monhoc.BoMonQL and khoa.MaKhoa = bomon.KhoaQL"
                                                     + " and bomon.MaBoMon = '" + ((SQLItem)cboSubject.SelectedItem).ID + "'");
             }
+            dataGridView.EndUpdate();
         }
     }
 }

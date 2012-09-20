@@ -65,7 +65,7 @@ namespace Exams_Scheduling_Manager
 
             //}
         }
-        public static void ShowOnGirdView(DataGridView dataGridView, String Query)
+        public static void ShowOnGridView(DataGridView dataGridView, String Query)
         {
             //Create a DataTable to hold the query results.
             DataTable dTable = new DataTable();

@@ -18,7 +18,7 @@ namespace Exams_Scheduling_Manager
 
         private void btnShow_Click(object sender, EventArgs e)
         {
-            Global.ShowOnGirdView(dataGridView, "select * from phong where MaPhong like '" + txtSearch.Text + "%'");
+            Global.ShowOnGridView(dataGridView, "select * from phong where MaPhong like '" + txtSearch.Text + "%'");
         }
     }
 }

@@ -73,6 +73,9 @@
     <Compile Include="Global.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ucCheckBoxGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ucCourseRegistration.cs">
       <SubType>UserControl</SubType>
     </Compile>

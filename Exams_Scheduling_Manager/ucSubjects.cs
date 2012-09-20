@@ -70,13 +70,13 @@ namespace Exams_Scheduling_Manager
         {
             if (cboFaculty.Enabled)
             {
-                Global.ShowOnGirdView(dataGridView, "SELECT [MaMonHoc],[TenMonHoc],[TCLyThuyet],[TCThucHanh],[MonThiNghiem],[KhoaXepLich],[BoMonQL],[GhiChu]"
+                Global.ShowOnGridView(dataGridView, "SELECT [MaMonHoc],[TenMonHoc],[TCLyThuyet],[TCThucHanh],[MonThiNghiem],[KhoaXepLich],[BoMonQL],[GhiChu]"
                                                     + " FROM monhoc, khoa, bomon"
                                                     + " WHERE MaKhoa = " + ((SQLItem)cboFaculty.SelectedItem).ID + " and MaKhoa = KhoaQL and BoMonQL = MaBoMon");
             }
             else
             {
-                Global.ShowOnGirdView(dataGridView, "Select * from monhoc where BoMonQL = " + ((SQLItem)cboSubject.SelectedItem).ID);
+                Global.ShowOnGridView(dataGridView, "Select * from monhoc where BoMonQL = " + ((SQLItem)cboSubject.SelectedItem).ID);
             }
         }
 

@@ -28,7 +28,7 @@ namespace Exams_Scheduling_Manager
                                 + " FROM pdkmh, monhoc, lichhocvu, bangphancongday, giaovien"
                                 + " WHERE pdkmh.MaMonHoc = monhoc.MaMonHoc and monhoc.MaMonHoc = lichhocvu.MaMonHoc and pdkmh.Nhom = lichhocvu.Nhom and monhoc.MaMonHoc = bangphancongday.MaMonHoc and lichhocvu.Nhom = bangphancongday.Nhom and bangphancongday.MaGiaoVien = giaovien.MaGiaoVien"
                                 + " and pdkmh.MaSinhVien = '" + txtStudentID.Text + "'";
-                Global.ShowOnGirdView(dataGridView, Query);
+                Global.ShowOnGridView(dataGridView, Query);
             //}
             //else
             //{

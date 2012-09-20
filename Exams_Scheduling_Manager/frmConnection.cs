@@ -67,7 +67,7 @@ namespace Exams_Scheduling_Manager
                 cboDatabases.Enabled = true;
                 SqlDR.Close();
             }
-            catch (System.Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Kết nối tới Server thất bại!\nĐề nghị kiểm tra lại các thông số kết nối!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 btnOK.Enabled =

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridView = new ucCheckBoxGridView();
             this.lblFaculty = new System.Windows.Forms.Label();
             this.lblSubject = new System.Windows.Forms.Label();
             this.cboFaculty = new System.Windows.Forms.ComboBox();
@@ -129,7 +129,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DataGridView dataGridView;
+        private ucCheckBoxGridView dataGridView;
         private System.Windows.Forms.Label lblFaculty;
         private System.Windows.Forms.Label lblSubject;
         private System.Windows.Forms.ComboBox cboFaculty;
