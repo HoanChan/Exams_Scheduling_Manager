@@ -22,50 +22,50 @@ namespace Exams_Scheduling_Manager
             get { return "Checked"; }
         }
 
-        public IEnumerable<DataGridViewRow> CheckedRows()
+        public IEnumerable<object> CheckedRows(String CollumnName)
         {
             foreach (DataGridViewRow Row in Rows)
             {
                 if ((bool)((DataGridViewCheckBoxCell)Row.Cells[CheckBoxCollumnName]).Value == true)
                 {
-                    yield return Row;
+                    yield return Row.Cells[CollumnName].Value;
                 }
             }
         }
 
-        public IEnumerable<DataGridViewRow> UnCheckedRows()
+        public IEnumerable<object> UnCheckedRows(String CollumnName)
         {
             foreach (DataGridViewRow Row in Rows)
             {
                 if ((bool)((DataGridViewCheckBoxCell)Row.Cells[CheckBoxCollumnName]).Value != true)
                 {
-                    yield return Row;
+                    yield return Row.Cells[CollumnName].Value;
                 }
             }
         }
 
         public void BeginUpdate()
         {
-            AddHeaderCheckBox();
-            HeaderCheckBox.KeyUp += new KeyEventHandler(HeaderCheckBox_KeyUp);
-            HeaderCheckBox.MouseClick += new MouseEventHandler(HeaderCheckBox_MouseClick);
-            CellValueChanged += new DataGridViewCellEventHandler(dataGridView_CellValueChanged);
-            CurrentCellDirtyStateChanged += new EventHandler(dataGridView_CurrentCellDirtyStateChanged);
-            CellPainting += new DataGridViewCellPaintingEventHandler(dataGridView_CellPainting);
-            CellBeginEdit += new DataGridViewCellCancelEventHandler(TheCellBeginEdit);
-            CheckBoxCollumn = new DataGridViewCheckBoxColumn();
-            CheckBoxCollumn.Name = CheckBoxCollumnName;
-            CheckBoxCollumn.HeaderText = "";
-            Columns.Add(CheckBoxCollumn);
+            if (HeaderCheckBox == null)
+            {
+                AddHeaderCheckBox();
+                HeaderCheckBox.KeyUp += new KeyEventHandler(HeaderCheckBox_KeyUp);
+                HeaderCheckBox.MouseClick += new MouseEventHandler(HeaderCheckBox_MouseClick);
+                CellValueChanged += new DataGridViewCellEventHandler(dataGridView_CellValueChanged);
+                CurrentCellDirtyStateChanged += new EventHandler(dataGridView_CurrentCellDirtyStateChanged);
+                CellPainting += new DataGridViewCellPaintingEventHandler(dataGridView_CellPainting);
+                CellBeginEdit += new DataGridViewCellCancelEventHandler(TheCellBeginEdit);
+                CheckBoxCollumn = new DataGridViewCheckBoxColumn();
+                CheckBoxCollumn.Name = CheckBoxCollumnName;
+                CheckBoxCollumn.HeaderText = "";
+                Columns.Add(CheckBoxCollumn);
+            }
         }
         public void EndUpdate()
         {
             ReadOnly = false;
-            //TotalCheckBoxes = RowCount;
-            //TotalCheckedCheckBoxes = 0;
             foreach (DataGridViewRow Row in Rows)
                 ((DataGridViewCheckBoxCell)Row.Cells[CheckBoxCollumnName]).Value = true;
-
             RefreshEdit();
             TotalCheckBoxes = RowCount;
             TotalCheckedCheckBoxes = RowCount;

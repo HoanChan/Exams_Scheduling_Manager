@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Collections;
 
 namespace Exams_Scheduling_Manager
 {
@@ -33,6 +34,7 @@ namespace Exams_Scheduling_Manager
     }
     public class Global
     {
+        public static List<String> IgnoreSubject = new List<String>();
         public static SqlConnection SQLConnection;
         public static bool Connect(String ConnectionString)
         {
@@ -50,20 +52,12 @@ namespace Exams_Scheduling_Manager
 
         public static void FillTable(String Query, DataTable dTable)
         {
-            //try
-            //{
             SqlCommand sqlCommand = new SqlCommand();
             sqlCommand = SQLConnection.CreateCommand();
             sqlCommand.CommandText = Query;
             SqlDataAdapter sda = new SqlDataAdapter(sqlCommand.CommandText, SQLConnection);
             SqlCommandBuilder scb = new SqlCommandBuilder(sda);
-            //Fill the DataTable.
             sda.Fill(dTable);
-            //}
-            //catch (Exception)
-            //{
-
-            //}
         }
         public static void ShowOnGridView(DataGridView dataGridView, String Query)
         {

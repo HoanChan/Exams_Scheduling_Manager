@@ -29,18 +29,20 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.dataGridView = new ucCheckBoxGridView();
             this.lblFaculty = new System.Windows.Forms.Label();
             this.lblSubject = new System.Windows.Forms.Label();
             this.cboFaculty = new System.Windows.Forms.ComboBox();
             this.cboSubject = new System.Windows.Forms.ComboBox();
             this.btnShow = new System.Windows.Forms.Button();
+            this.dataGridView = new Exams_Scheduling_Manager.ucCheckBoxGridView();
+            this.btnSave = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnSave);
             this.panel1.Controls.Add(this.lblFaculty);
             this.panel1.Controls.Add(this.lblSubject);
             this.panel1.Controls.Add(this.cboFaculty);
@@ -51,6 +53,52 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(745, 66);
             this.panel1.TabIndex = 2;
+            // 
+            // lblFaculty
+            // 
+            this.lblFaculty.AutoSize = true;
+            this.lblFaculty.Location = new System.Drawing.Point(168, 39);
+            this.lblFaculty.Name = "lblFaculty";
+            this.lblFaculty.Size = new System.Drawing.Size(35, 13);
+            this.lblFaculty.TabIndex = 9;
+            this.lblFaculty.Text = "Khoa:";
+            // 
+            // lblSubject
+            // 
+            this.lblSubject.AutoSize = true;
+            this.lblSubject.Location = new System.Drawing.Point(168, 12);
+            this.lblSubject.Name = "lblSubject";
+            this.lblSubject.Size = new System.Drawing.Size(46, 13);
+            this.lblSubject.TabIndex = 8;
+            this.lblSubject.Text = "Bộ môn:";
+            // 
+            // cboFaculty
+            // 
+            this.cboFaculty.Enabled = false;
+            this.cboFaculty.FormattingEnabled = true;
+            this.cboFaculty.Location = new System.Drawing.Point(220, 36);
+            this.cboFaculty.Name = "cboFaculty";
+            this.cboFaculty.Size = new System.Drawing.Size(189, 21);
+            this.cboFaculty.TabIndex = 7;
+            // 
+            // cboSubject
+            // 
+            this.cboSubject.FormattingEnabled = true;
+            this.cboSubject.Location = new System.Drawing.Point(220, 9);
+            this.cboSubject.Name = "cboSubject";
+            this.cboSubject.Size = new System.Drawing.Size(189, 21);
+            this.cboSubject.TabIndex = 6;
+            this.cboSubject.SelectedIndexChanged += new System.EventHandler(this.cboSubject_SelectedIndexChanged);
+            // 
+            // btnShow
+            // 
+            this.btnShow.Location = new System.Drawing.Point(415, 9);
+            this.btnShow.Name = "btnShow";
+            this.btnShow.Size = new System.Drawing.Size(75, 48);
+            this.btnShow.TabIndex = 5;
+            this.btnShow.Text = "Hiển thị";
+            this.btnShow.UseVisualStyleBackColor = true;
+            this.btnShow.Click += new System.EventHandler(this.btnShow_Click);
             // 
             // dataGridView
             // 
@@ -64,51 +112,15 @@
             this.dataGridView.Size = new System.Drawing.Size(745, 391);
             this.dataGridView.TabIndex = 3;
             // 
-            // lblFaculty
+            // btnSave
             // 
-            this.lblFaculty.AutoSize = true;
-            this.lblFaculty.Location = new System.Drawing.Point(211, 39);
-            this.lblFaculty.Name = "lblFaculty";
-            this.lblFaculty.Size = new System.Drawing.Size(35, 13);
-            this.lblFaculty.TabIndex = 9;
-            this.lblFaculty.Text = "Khoa:";
-            // 
-            // lblSubject
-            // 
-            this.lblSubject.AutoSize = true;
-            this.lblSubject.Location = new System.Drawing.Point(211, 12);
-            this.lblSubject.Name = "lblSubject";
-            this.lblSubject.Size = new System.Drawing.Size(46, 13);
-            this.lblSubject.TabIndex = 8;
-            this.lblSubject.Text = "Bộ môn:";
-            // 
-            // cboFaculty
-            // 
-            this.cboFaculty.Enabled = false;
-            this.cboFaculty.FormattingEnabled = true;
-            this.cboFaculty.Location = new System.Drawing.Point(263, 36);
-            this.cboFaculty.Name = "cboFaculty";
-            this.cboFaculty.Size = new System.Drawing.Size(189, 21);
-            this.cboFaculty.TabIndex = 7;
-            // 
-            // cboSubject
-            // 
-            this.cboSubject.FormattingEnabled = true;
-            this.cboSubject.Location = new System.Drawing.Point(263, 9);
-            this.cboSubject.Name = "cboSubject";
-            this.cboSubject.Size = new System.Drawing.Size(189, 21);
-            this.cboSubject.TabIndex = 6;
-            this.cboSubject.SelectedIndexChanged += new System.EventHandler(this.cboSubject_SelectedIndexChanged);
-            // 
-            // btnShow
-            // 
-            this.btnShow.Location = new System.Drawing.Point(458, 9);
-            this.btnShow.Name = "btnShow";
-            this.btnShow.Size = new System.Drawing.Size(75, 48);
-            this.btnShow.TabIndex = 5;
-            this.btnShow.Text = "Hiển thị";
-            this.btnShow.UseVisualStyleBackColor = true;
-            this.btnShow.Click += new System.EventHandler(this.btnShow_Click);
+            this.btnSave.Location = new System.Drawing.Point(496, 9);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(81, 48);
+            this.btnSave.TabIndex = 10;
+            this.btnSave.Text = "Lưu lựa chọn";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // ucStep_SelectSubjects
             // 
@@ -135,6 +147,7 @@
         private System.Windows.Forms.ComboBox cboFaculty;
         private System.Windows.Forms.ComboBox cboSubject;
         private System.Windows.Forms.Button btnShow;
+        private System.Windows.Forms.Button btnSave;
 
     }
 }

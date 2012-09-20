@@ -37,6 +37,8 @@ namespace Exams_Scheduling_Manager
                 {
                     cboFaculty.Items.Add(new SQLItem(dRow["MaKhoa"], dRow["TenKhoa"]));
                 }
+                cboFaculty.Items.Add(new SQLItem(null, "?"));
+                cboFaculty.SelectedIndex = 0;
             }
         }
 
@@ -63,19 +65,43 @@ namespace Exams_Scheduling_Manager
         private void btnShow_Click(object sender, EventArgs e)
         {
             dataGridView.BeginUpdate();
+            String Query = "select distinct monhoc.MaMonHoc, monhoc.TenMonHoc from monhoc, pdkmh, bomon, khoa"
+                            + " where monhoc.MaMonHoc = pdkmh.MaMonHoc and bomon.MaBoMon = monhoc.BoMonQL and khoa.MaKhoa = bomon.KhoaQL";
             if (cboFaculty.Enabled)
             {
-                Global.ShowOnGridView(dataGridView, "select distinct monhoc.MaMonHoc, monhoc.TenMonHoc from monhoc, pdkmh, bomon, khoa"
-                                                    + " where monhoc.MaMonHoc = pdkmh.MaMonHoc and bomon.MaBoMon = monhoc.BoMonQL and khoa.MaKhoa = bomon.KhoaQL"
-                                                    + " and khoa.MaKhoa = '" + ((SQLItem)cboFaculty.SelectedItem).ID + "'");
+                if (((SQLItem)cboFaculty.SelectedItem).ID == null)
+                {
+                    Global.ShowOnGridView(dataGridView, Query);
+                }
+                else
+                {
+                    Global.ShowOnGridView(dataGridView, Query + " and khoa.MaKhoa = '" + ((SQLItem)cboFaculty.SelectedItem).ID + "'");
+                }
             }
             else
             {
-                Global.ShowOnGridView(dataGridView, "select distinct monhoc.MaMonHoc, monhoc.TenMonHoc from monhoc, pdkmh, bomon, khoa"
-                                                    + " where monhoc.MaMonHoc = pdkmh.MaMonHoc and bomon.MaBoMon = monhoc.BoMonQL and khoa.MaKhoa = bomon.KhoaQL"
-                                                    + " and bomon.MaBoMon = '" + ((SQLItem)cboSubject.SelectedItem).ID + "'");
+                Global.ShowOnGridView(dataGridView, Query + " and bomon.MaBoMon = '" + ((SQLItem)cboSubject.SelectedItem).ID + "'");
             }
             dataGridView.EndUpdate();
+            foreach (DataGridViewRow Row in dataGridView.Rows)
+            {
+                if (Global.IgnoreSubject.Contains(Row.Cells["MaMonHoc"].Value))
+                {
+                    Row.Cells[dataGridView.CheckBoxCollumnName].Value = false;
+                }
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            foreach (String SubjectID in dataGridView.UnCheckedRows("MaMonHoc"))
+            {
+                if (!Global.IgnoreSubject.Contains(SubjectID))
+                {
+                    Global.IgnoreSubject.Add(SubjectID);
+                }
+            }
+            MessageBox.Show("Đã lưu xong!", "Thông Báo");
         }
     }
 }
