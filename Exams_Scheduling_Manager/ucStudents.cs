@@ -367,7 +367,7 @@ namespace Exams_Scheduling_Manager
             if (txtMSSV.Text != dataGridView.SelectedRows[0].Cells["MaSinhVien"].Value.ToString())
             {
                 Ok = true;
-                if (Global.RunNonQuery("select * from monhoc where MaMonHoc = " + txtMSSV.Text) > 0)
+                if (Global.RunNonQuery("select * from sinhvien where MaSinhVien = " + txtMSSV.Text) > 0)
                 {
                     errorProvider.SetError(txtMSSV, "Đã được sử dụng, đề nghị nhập cái khác");
                     Ok = false;
@@ -377,32 +377,6 @@ namespace Exams_Scheduling_Manager
             }
             return Ok;
         }
-        /*
-        private Boolean CheckLastName()
-        {
-            Boolean ok = false;
-            if (txtLastName.Text != dataGridView.SelectedRows[0].Cells["Ho"].Value.ToString())
-                ok = CheckInfo(2);
-            return ok;
-        }
-
-        private Boolean CheckFirstName()
-        {
-            Boolean ok = false;
-            if (txtFristName.Text != dataGridView.SelectedRows[0].Cells["Ten"].Value.ToString())
-                ok = CheckInfo(3);
-            return ok;
-        }
-
-        private Boolean CheckDateBorn()
-        {
-            Boolean ok = false;
-            if (dateBorn.Value != DateTime.Parse(dataGridView.SelectedRows[0].Cells["NgaySinh"].Value.ToString()))
-                ok = CheckInfo(4);
-            return ok;
-        }
-        */
-
 
         private Boolean CheckClass()
         {
