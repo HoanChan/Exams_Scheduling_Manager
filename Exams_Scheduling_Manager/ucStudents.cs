@@ -68,9 +68,9 @@ namespace Exams_Scheduling_Manager
             }
         }
 
-        private void ShowClass()
+        private void ShowClass(string Class)
         {
-            Global.ShowOnGirdView(dataGridView, "Select [MaSinhVien],[Ho],[Ten],[Phai],[NgaySinh],[Lop] From sinhvien Where Lop = '" + cboClass.SelectedItem.ToString() + "'");
+            Global.ShowOnGirdView(dataGridView, "Select [MaSinhVien],[Ho],[Ten],[Phai],[NgaySinh],[Lop] From sinhvien Where Lop = '" + Class + "'");
         }
 
         private void ShowFaculty()
@@ -95,7 +95,7 @@ namespace Exams_Scheduling_Manager
             panel1.Enabled = false;
             if (((SQLItem)cboClass.SelectedItem).ID != null)
             {
-                ShowClass();
+                ShowClass(cboClass.SelectedItem.ToString());
             }
             else
                 if (((SQLItem)cboFaculty.SelectedItem).ID != null)
@@ -185,91 +185,77 @@ namespace Exams_Scheduling_Manager
             ChangeCboFaculty(cboFaculty, cboClass);
         }
 
-        private class SQLItem
-        {
-            public object ID;
-            public object Name;
-            public object Info;
-            public SQLItem(object _ID, object _Name)
-            {
-                ID = _ID;
-                Name = _Name;
-                Info = null;
-            }
-            public SQLItem(object _ID, object _Name, Object _Info)
-            {
-                ID = _ID;
-                Name = _Name;
-                Info = _Info;
-            }
-            public override string ToString()
-            {
-                return Name.ToString();
-            }
-        }
+        
 
         private Boolean IsModifyMode = false;
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            panel1.Enabled = false;
             if (dataGridView.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Đề nghị chọn dòng cần xóa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            else if (MessageBox.Show("Bạn có muốn xóa sinh viên có thông tin:\r\n_ MSSV: " + dataGridView.SelectedRows[0].Cells["MaSinhVien"].Value + "\r\n_ Họ tên: " + dataGridView.SelectedRows[0].Cells["Ho"].Value + " " + dataGridView.SelectedRows[0].Cells["Ten"].Value, "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                try
+            else
+                for (int i = 0; i < dataGridView.SelectedRows.Count; ++i)
                 {
-                    SqlCommand mySqlCommand = Global.SQLConnection.CreateCommand();
-                    mySqlCommand.CommandText = "DELETE FROM sinhvien WHERE MaSinhVien = @MaSV";
-                    mySqlCommand.Parameters.AddWithValue("@MaSV", dataGridView.SelectedRows[0].Cells["MaSinhVien"].Value);
-
-                    if (mySqlCommand.ExecuteNonQuery() > 0)
+                    if (MessageBox.Show("Bạn có muốn xóa sinh viên có thông tin:\r\n_ MSSV: " + dataGridView.SelectedRows[i].Cells["MaSinhVien"].Value + "\r\n_ Họ tên: " + dataGridView.SelectedRows[i].Cells["Ho"].Value + " " + dataGridView.SelectedRows[i].Cells["Ten"].Value, "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        MessageBox.Show("Xóa thành công", "Thông báo");
-                        btnShow.PerformClick();
-                    }
-                }
-                catch
-                {
-                    if (MessageBox.Show("Sinh viên này đã đăng ký môn học rồi. Bạn có thật sự muốn xóa không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        SqlCommand mySqlCommand1 = Global.SQLConnection.CreateCommand();
-                        mySqlCommand1.CommandText = "DELETE FROM pdkmh  WHERE MaSinhVien = @MaSV";
-                        mySqlCommand1.Parameters.AddWithValue("@MaSV", dataGridView.SelectedRows[0].Cells["MaSinhVien"].Value);
-                        mySqlCommand1.ExecuteNonQuery();
-
-                        mySqlCommand1 = Global.SQLConnection.CreateCommand();
-                        mySqlCommand1.CommandText = "DELETE FROM sinhvien WHERE MaSinhVien = @MaSV";
-                        mySqlCommand1.Parameters.AddWithValue("@MaSV", dataGridView.SelectedRows[0].Cells["MaSinhVien"].Value);
-
                         try
                         {
-                            if (mySqlCommand1.ExecuteNonQuery() > 0)
+                            SqlCommand mySqlCommand = Global.SQLConnection.CreateCommand();
+                            mySqlCommand.CommandText = "DELETE FROM sinhvien WHERE MaSinhVien = @MaSV";
+                            mySqlCommand.Parameters.AddWithValue("@MaSV", dataGridView.SelectedRows[i].Cells["MaSinhVien"].Value);
+
+                            if (mySqlCommand.ExecuteNonQuery() > 0)
                             {
                                 MessageBox.Show("Xóa thành công", "Thông báo");
-                                btnShow.PerformClick();
+                             //   btnShow.PerformClick();
                             }
                         }
                         catch
                         {
-                            SqlCommand mySqlCommand2 = Global.SQLConnection.CreateCommand();
-                            mySqlCommand2.CommandText = "DELETE FROM tkbmacdinhsinhvien WHERE MaSinhVien = @MaSV";
-                            mySqlCommand2.Parameters.AddWithValue("@MaSV", dataGridView.SelectedRows[0].Cells["MaSinhVien"].Value);
-                            mySqlCommand2.ExecuteNonQuery();
-
-                            mySqlCommand2 = Global.SQLConnection.CreateCommand();
-                            mySqlCommand2.CommandText = "DELETE FROM sinhvien WHERE MaSinhVien = @MaSV";
-                            mySqlCommand2.Parameters.AddWithValue("@MaSV", dataGridView.SelectedRows[0].Cells["MaSinhVien"].Value);
-                            if (mySqlCommand2.ExecuteNonQuery() > 0)
+                            if (MessageBox.Show("Sinh viên này đã đăng ký môn học rồi. Bạn có thật sự muốn xóa không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
-                                MessageBox.Show("Xóa thành công", "Thông báo");
-                                btnShow.PerformClick();
+                                SqlCommand mySqlCommand1 = Global.SQLConnection.CreateCommand();
+                                mySqlCommand1.CommandText = "DELETE FROM pdkmh  WHERE MaSinhVien = @MaSV";
+                                mySqlCommand1.Parameters.AddWithValue("@MaSV", dataGridView.SelectedRows[i].Cells["MaSinhVien"].Value);
+                                mySqlCommand1.ExecuteNonQuery();
+
+                                mySqlCommand1 = Global.SQLConnection.CreateCommand();
+                                mySqlCommand1.CommandText = "DELETE FROM sinhvien WHERE MaSinhVien = @MaSV";
+                                mySqlCommand1.Parameters.AddWithValue("@MaSV", dataGridView.SelectedRows[i].Cells["MaSinhVien"].Value);
+
+                                try
+                                {
+                                    if (mySqlCommand1.ExecuteNonQuery() > 0)
+                                    {
+                                        MessageBox.Show("Xóa thành công", "Thông báo");
+                                        //btnShow.PerformClick();
+                                    }
+                                }
+                                catch
+                                {
+                                    SqlCommand mySqlCommand2 = Global.SQLConnection.CreateCommand();
+                                    mySqlCommand2.CommandText = "DELETE FROM tkbmacdinhsinhvien WHERE MaSinhVien = @MaSV";
+                                    mySqlCommand2.Parameters.AddWithValue("@MaSV", dataGridView.SelectedRows[i].Cells["MaSinhVien"].Value);
+                                    mySqlCommand2.ExecuteNonQuery();
+
+                                    mySqlCommand2 = Global.SQLConnection.CreateCommand();
+                                    mySqlCommand2.CommandText = "DELETE FROM sinhvien WHERE MaSinhVien = @MaSV";
+                                    mySqlCommand2.Parameters.AddWithValue("@MaSV", dataGridView.SelectedRows[i].Cells["MaSinhVien"].Value);
+                                    if (mySqlCommand2.ExecuteNonQuery() > 0)
+                                    {
+                                        MessageBox.Show("Xóa thành công", "Thông báo");
+                                        btnShow.PerformClick();
+                                    }
+                                }
                             }
                         }
                     }
                 }
-            }
+            panel1.Enabled = true;
+            btnShow.PerformClick();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -307,7 +293,7 @@ namespace Exams_Scheduling_Manager
         {
             if (IsModifyMode)
             {
-                if (CheckMSSV())
+                if (CheckMSSV() && CheckClass())
                 {
                     SqlCommand mySqlCommand = Global.SQLConnection.CreateCommand();
                     mySqlCommand.CommandText = "UPDATE sinhvien"
@@ -348,19 +334,26 @@ namespace Exams_Scheduling_Manager
                     mySqlCommand.Parameters.AddWithValue("@Lop", ((SQLItem)cboClassAdd.SelectedItem).ID.ToString());
                     mySqlCommand.Parameters.AddWithValue("@NgaySinh", dateBorn.Value);
 
-                    try
+
+                    if (mySqlCommand.ExecuteNonQuery() > 0)
                     {
-                        if (mySqlCommand.ExecuteNonQuery() > 0)
+                        MessageBox.Show("Thêm mới thành công", "Thông báo");
+                        cboHeDaoTao.SelectedIndex = 1;
+                        foreach (SQLItem items in cboClass.Items)
                         {
-                            MessageBox.Show("Thêm mới thành công", "Thông báo");
-                            cboHeDaoTao.SelectedIndex = 1;
-                            btnShow.PerformClick();
+                            if (items != null)
+                                if (((SQLItem)items).Name.ToString() == ((SQLItem)cboClassAdd.SelectedItem).ID.ToString())
+                                {
+                                    cboClass.SelectedItem = items;
+                                    break;
+                                }
                         }
+                        panel1.Enabled = true;
+                        btnShow.PerformClick();
                     }
-                    catch
-                    {
+                    else
                         MessageBox.Show("Thêm mới không thực hiện được", "Thông báo");
-                    }
+
                     panel1.Enabled = true;
                     pnlEdit.Visible = false;
                 }
@@ -386,7 +379,7 @@ namespace Exams_Scheduling_Manager
             }
             return Ok;
         }
-
+        /*
         private Boolean CheckLastName()
         {
             Boolean ok = false;
@@ -410,6 +403,8 @@ namespace Exams_Scheduling_Manager
                 ok = CheckInfo(4);
             return ok;
         }
+        */
+
 
         private Boolean CheckClass()
         {
@@ -431,64 +426,17 @@ namespace Exams_Scheduling_Manager
                 }
             }
             else
-                if (i == 2)
+                if (((SQLItem)cboClassAdd.SelectedItem).ID == null)
                 {
-                    if (txtLastName.Text.Length > 20)
-                    {
-                        errorProvider.SetError(txtLastName, "Không được quá 20 ký tự");
-                        ok = false;
-                    }
-                    else if (txtLastName.Text == "")
-                    {
-                        errorProvider.SetError(txtLastName, "Chưa nhập");
-                        ok = false;
-                    }
+                    errorProvider.SetError(cboClassAdd, "Chưa chọn lớp");
+                    ok = false;
                 }
                 else
-                    if (i == 3)
+                    if (Global.RunScalar("select * from lop where MaLop = '" + ((SQLItem)cboClassAdd.SelectedItem).ID.ToString() + "'") == null)
                     {
-                        if (txtFristName.Text.Length > 10)
-                        {
-                            errorProvider.SetError(txtFristName, "Không được quá 10 ký tự");
-                            ok = false;
-                        }
-                        else if (txtFristName.Text == "")
-                        {
-                            errorProvider.SetError(txtFristName, "Chưa nhập");
-                            ok = false;
-                        }
+                        errorProvider.SetError(cboClassAdd, "Lớp ko có trong hệ thống");
+                        ok = false;
                     }
-                    else
-                        if (i == 4)
-                        {
-
-                            if (dateBorn.Value > DateTime.Now)
-                            {
-                                errorProvider.SetError(dateBorn, "Ngày Sinh chưa hợp lệ");
-                                ok = false;
-                            }
-                            else
-                                if (dateBorn.Value.Year + 17 > DateTime.Now.Year)
-                                {
-                                    errorProvider.SetError(dateBorn, "Chưa đủ tuổi học");
-                                    ok = false;
-                                }
-                        }
-                        else
-                        {
-                            if (((SQLItem)cboClassAdd.SelectedItem).ID == null)
-                            {
-                                errorProvider.SetError(cboClassAdd, "Chưa chọn lớp");
-                                ok = false;
-                            }
-                            else
-                                if (Global.RunScalar("select * from lop where MaLop = '" + ((SQLItem)cboClassAdd.SelectedItem).ID.ToString() + "'") == null)
-                                {
-                                    errorProvider.SetError(cboClassAdd, "Lớp ko có trong hệ thống");
-                                    ok = false;
-                                }
-                        }
-
             return ok;
         }
 
@@ -505,9 +453,41 @@ namespace Exams_Scheduling_Manager
                 ok = CheckInfo(1);
             }
 
-            ok = CheckInfo(2);
-            ok = CheckInfo(3);
-            ok = CheckInfo(4);
+            if (txtLastName.Text.Length > 20)
+            {
+                errorProvider.SetError(txtLastName, "Không được quá 20 ký tự");
+                ok = false;
+            }
+            else if (txtLastName.Text == "")
+            {
+                errorProvider.SetError(txtLastName, "Chưa nhập");
+                ok = false;
+            }
+
+            if (txtFristName.Text.Length > 10)
+            {
+                errorProvider.SetError(txtFristName, "Không được quá 10 ký tự");
+                ok = false;
+            }
+            else if (txtFristName.Text == "")
+            {
+                errorProvider.SetError(txtFristName, "Chưa nhập");
+                ok = false;
+            }
+
+
+            if (dateBorn.Value > DateTime.Now)
+            {
+                errorProvider.SetError(dateBorn, "Ngày Sinh chưa hợp lệ");
+                ok = false;
+            }
+            else
+                if (dateBorn.Value.Year + 17 > DateTime.Now.Year)
+                {
+                    errorProvider.SetError(dateBorn, "Chưa đủ tuổi học");
+                    ok = false;
+                }
+
             ok = CheckInfo(5);
 
             return ok;

@@ -30,19 +30,21 @@
         {
             this.tabTable = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.ucStudents2 = new Exams_Scheduling_Manager.ucStudents();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
             this.ucCourseRegistration1 = new Exams_Scheduling_Manager.ucCourseRegistration();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.ucRoom1 = new Exams_Scheduling_Manager.ucRoom();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.ucSubjects2 = new Exams_Scheduling_Manager.ucSubjects();
+            this.ucTeachers1 = new Exams_Scheduling_Manager.ucTeachers();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabTable.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabTable
@@ -70,6 +72,15 @@
             this.tabPage1.Text = "Sinh viên";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // ucStudents2
+            // 
+            this.ucStudents2.BackColor = System.Drawing.Color.DimGray;
+            this.ucStudents2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucStudents2.Location = new System.Drawing.Point(3, 3);
+            this.ucStudents2.Name = "ucStudents2";
+            this.ucStudents2.Size = new System.Drawing.Size(974, 472);
+            this.ucStudents2.TabIndex = 0;
+            // 
             // tabPage5
             // 
             this.tabPage5.Controls.Add(this.ucCourseRegistration1);
@@ -81,15 +92,13 @@
             this.tabPage5.Text = "Đăng ký môn học";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // ucCourseRegistration1
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(980, 478);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Giáo viên";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.ucCourseRegistration1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucCourseRegistration1.Location = new System.Drawing.Point(3, 3);
+            this.ucCourseRegistration1.Name = "ucCourseRegistration1";
+            this.ucCourseRegistration1.Size = new System.Drawing.Size(974, 472);
+            this.ucCourseRegistration1.TabIndex = 0;
             // 
             // tabPage3
             // 
@@ -102,6 +111,14 @@
             this.tabPage3.Text = "Phòng học";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // ucRoom1
+            // 
+            this.ucRoom1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucRoom1.Location = new System.Drawing.Point(3, 3);
+            this.ucRoom1.Name = "ucRoom1";
+            this.ucRoom1.Size = new System.Drawing.Size(974, 472);
+            this.ucRoom1.TabIndex = 0;
+            // 
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.ucSubjects2);
@@ -113,31 +130,6 @@
             this.tabPage4.Text = "Môn học";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // ucStudents2
-            // 
-            this.ucStudents2.BackColor = System.Drawing.Color.DimGray;
-            this.ucStudents2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucStudents2.Location = new System.Drawing.Point(3, 3);
-            this.ucStudents2.Name = "ucStudents2";
-            this.ucStudents2.Size = new System.Drawing.Size(974, 472);
-            this.ucStudents2.TabIndex = 0;
-            // 
-            // ucCourseRegistration1
-            // 
-            this.ucCourseRegistration1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucCourseRegistration1.Location = new System.Drawing.Point(3, 3);
-            this.ucCourseRegistration1.Name = "ucCourseRegistration1";
-            this.ucCourseRegistration1.Size = new System.Drawing.Size(974, 472);
-            this.ucCourseRegistration1.TabIndex = 0;
-            // 
-            // ucRoom1
-            // 
-            this.ucRoom1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucRoom1.Location = new System.Drawing.Point(3, 3);
-            this.ucRoom1.Name = "ucRoom1";
-            this.ucRoom1.Size = new System.Drawing.Size(974, 472);
-            this.ucRoom1.TabIndex = 0;
-            // 
             // ucSubjects2
             // 
             this.ucSubjects2.BackColor = System.Drawing.Color.Transparent;
@@ -146,6 +138,25 @@
             this.ucSubjects2.Name = "ucSubjects2";
             this.ucSubjects2.Size = new System.Drawing.Size(974, 472);
             this.ucSubjects2.TabIndex = 0;
+            // 
+            // ucTeachers1
+            // 
+            this.ucTeachers1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucTeachers1.Location = new System.Drawing.Point(3, 3);
+            this.ucTeachers1.Name = "ucTeachers1";
+            this.ucTeachers1.Size = new System.Drawing.Size(974, 472);
+            this.ucTeachers1.TabIndex = 0;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.ucTeachers1);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(980, 478);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Giáo viên";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // frmDatabaseEditor
             // 
@@ -161,6 +172,7 @@
             this.tabPage5.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -169,7 +181,6 @@
 
         private System.Windows.Forms.TabControl tabTable;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
       //  private ucSubjects ucSubjects1;
         private System.Windows.Forms.TabPage tabPage4;
@@ -178,6 +189,8 @@
         private System.Windows.Forms.TabPage tabPage5;
         private ucRoom ucRoom1;
         private ucCourseRegistration ucCourseRegistration1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private ucTeachers ucTeachers1;
       //  private ucCourseRegistration ucCourseRegistration1;
     }
 }

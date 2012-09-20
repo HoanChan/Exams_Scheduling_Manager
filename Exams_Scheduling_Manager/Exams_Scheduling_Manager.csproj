@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Exams_Scheduling_Manager, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <ExecutableExtension>.exe</ExecutableExtension>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -106,6 +109,12 @@
     <Compile Include="ucSubjects.Designer.cs">
       <DependentUpon>ucSubjects.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucTeachers.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucTeachers.Designer.cs">
+      <DependentUpon>ucTeachers.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Database Editor.resx">
       <DependentUpon>Database Editor.cs</DependentUpon>
     </EmbeddedResource>
@@ -141,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ucSubjects.resx">
       <DependentUpon>ucSubjects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucTeachers.resx">
+      <DependentUpon>ucTeachers.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
