@@ -93,6 +93,7 @@ namespace Exams_Scheduling_Manager
         private void btnShow_Click(object sender, EventArgs e)
         {
             panel1.Enabled = false;
+
             if (((SQLItem)cboClass.SelectedItem).ID != null)
             {
                 ShowClass(cboClass.SelectedItem.ToString());
@@ -301,7 +302,8 @@ namespace Exams_Scheduling_Manager
                     mySqlCommand.Parameters.AddWithValue("@Ho", txtLastName.Text);
                     mySqlCommand.Parameters.AddWithValue("@Ten", txtFristName.Text);
                     mySqlCommand.Parameters.AddWithValue("@Phai", (cboSex.SelectedItem.ToString()) == "Nam" ? 1 : 0);
-                    mySqlCommand.Parameters.AddWithValue("@NgaySinh", dateBorn.Value);
+                    DateTime date = dateBorn.Value;
+                    mySqlCommand.Parameters.AddWithValue("@NgaySinh", date.ToString("dd/MM/yy"));
                     mySqlCommand.Parameters.AddWithValue("@Lop", ((SQLItem)cboClassAdd.SelectedItem).ID.ToString());
                     mySqlCommand.Parameters.AddWithValue("@MaSVCu", dataGridView.SelectedRows[0].Cells["MaSinhVien"].Value.ToString());
 
@@ -330,7 +332,9 @@ namespace Exams_Scheduling_Manager
                     mySqlCommand.Parameters.AddWithValue("@Ten", txtFristName.Text);
                     mySqlCommand.Parameters.AddWithValue("@Phai", (cboSex.SelectedItem.ToString()) == "Nam" ? 1 : 0);
                     mySqlCommand.Parameters.AddWithValue("@Lop", ((SQLItem)cboClassAdd.SelectedItem).ID.ToString());
-                    mySqlCommand.Parameters.AddWithValue("@NgaySinh", dateBorn.Value);
+
+                    DateTime date = dateBorn.Value;
+                    mySqlCommand.Parameters.AddWithValue("@NgaySinh", date.ToString("dd/MM/yy"));
 
 
                     if (mySqlCommand.ExecuteNonQuery() > 0)
@@ -363,7 +367,7 @@ namespace Exams_Scheduling_Manager
 
         private Boolean CheckMSSV()
         {
-            Boolean Ok = false;
+            Boolean Ok = true;
             if (txtMSSV.Text != dataGridView.SelectedRows[0].Cells["MaSinhVien"].Value.ToString())
             {
                 Ok = true;
@@ -380,9 +384,9 @@ namespace Exams_Scheduling_Manager
 
         private Boolean CheckClass()
         {
-            Boolean ok = false;
+            Boolean ok = true;
             if (((SQLItem)cboClassAdd.SelectedItem).ID.ToString() != dataGridView.SelectedRows[0].Cells["Lop"].Value.ToString())
-                ok = CheckInfo(5);
+                ok = CheckInfo(2);
             return ok;
         }
 
