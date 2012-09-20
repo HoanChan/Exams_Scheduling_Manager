@@ -70,24 +70,24 @@ namespace Exams_Scheduling_Manager
 
         private void ShowClass(string Class)
         {
-            Global.ShowOnGirdView(dataGridView, "Select [MaSinhVien],[Ho],[Ten],[Phai],[NgaySinh],[Lop] From sinhvien Where Lop = '" + Class + "'");
+            Global.ShowOnGridView(dataGridView, "Select [MaSinhVien],[Ho],[Ten],[Phai],[NgaySinh],[Lop] From sinhvien Where Lop = '" + Class + "'");
         }
 
         private void ShowFaculty()
         {
             String themHeDaoTao = ((SQLItem)cboHeDaoTao.SelectedItem).ID != null ? " and khoi.BacHoc= '" + ((SQLItem)cboHeDaoTao.SelectedItem).ID.ToString() + "'" : "";
-            Global.ShowOnGirdView(dataGridView, "select [MaSinhVien],[Ho],[Ten],[Phai],[NgaySinh],[Lop] from sinhvien, khoi, khoa, lop where sinhvien.lop = lop.MaLop and lop.MaKhoi = khoi.MaKhoi and khoa.MaKhoa = khoi.KhoaQL and khoa.MaKhoa = '" + ((SQLItem)cboFaculty.SelectedItem).ID.ToString() + "'" + themHeDaoTao);
+            Global.ShowOnGridView(dataGridView, "select [MaSinhVien],[Ho],[Ten],[Phai],[NgaySinh],[Lop] from sinhvien, khoi, khoa, lop where sinhvien.lop = lop.MaLop and lop.MaKhoi = khoi.MaKhoi and khoa.MaKhoa = khoi.KhoaQL and khoa.MaKhoa = '" + ((SQLItem)cboFaculty.SelectedItem).ID.ToString() + "'" + themHeDaoTao);
 
         }
 
         private void ShowHeDaoTao()
         {
-            Global.ShowOnGirdView(dataGridView, "Select [MaSinhVien],[Ho],[Ten],[Phai],[NgaySinh],[Lop] From sinhvien, lop, khoi  where lop = Malop and lop.Makhoi = khoi.MaKhoi and BacHoc = '" + ((SQLItem)cboHeDaoTao.SelectedItem).ID.ToString() + "'");
+            Global.ShowOnGridView(dataGridView, "Select [MaSinhVien],[Ho],[Ten],[Phai],[NgaySinh],[Lop] From sinhvien, lop, khoi  where lop = Malop and lop.Makhoi = khoi.MaKhoi and BacHoc = '" + ((SQLItem)cboHeDaoTao.SelectedItem).ID.ToString() + "'");
         }
 
         private void ShowAllStudents()
         {
-            Global.ShowOnGirdView(dataGridView, "Select [MaSinhVien],[Ho],[Ten],[Phai],[NgaySinh] From sinhvien");
+            Global.ShowOnGridView(dataGridView, "Select [MaSinhVien],[Ho],[Ten],[Phai],[NgaySinh] From sinhvien");
         }
 
         private void btnShow_Click(object sender, EventArgs e)
@@ -184,8 +184,6 @@ namespace Exams_Scheduling_Manager
         {
             ChangeCboFaculty(cboFaculty, cboClass);
         }
-
-        
 
         private Boolean IsModifyMode = false;
 

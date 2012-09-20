@@ -16,6 +16,8 @@ namespace Exams_Scheduling_Manager
             InitializeComponent();
         }
 
+        private Boolean IsModifyMode;
+
         private void ComboboxFacutly(ComboBox cbo)
         {
             DataTable dTable = new DataTable();
@@ -77,17 +79,17 @@ namespace Exams_Scheduling_Manager
 
         private void ShowFacutly()
         {
-            Global.ShowOnGirdView(dataGridView, "Select [MaGiaoVien],[HoLot],[TenGiaoVien],[HocHam],[HocVi] From giaovien, bomon where BoMonQL = MaBoMon and KhoaQL = '" + ((SQLItem)cboFaculty.SelectedItem).ID.ToString() + "'");
+            Global.ShowOnGridView(dataGridView, "Select [MaGiaoVien],[HoLot],[TenGiaoVien],[HocHam],[HocVi] From giaovien, bomon where BoMonQL = MaBoMon and KhoaQL = '" + ((SQLItem)cboFaculty.SelectedItem).ID.ToString() + "'");
         }
 
         private void ShowSubjects()
         {
-            Global.ShowOnGirdView(dataGridView, "Select [MaGiaoVien],[HoLot],[TenGiaoVien],[HocHam],[HocVi] From giaovien where BoMonQL = '" + ((SQLItem)cboSubject.SelectedItem).ID.ToString() + "'");
+            Global.ShowOnGridView(dataGridView, "Select [MaGiaoVien],[HoLot],[TenGiaoVien],[HocHam],[HocVi] From giaovien where BoMonQL = '" + ((SQLItem)cboSubject.SelectedItem).ID.ToString() + "'");
         }
 
         private void ShowAllTeachers()
         {
-            Global.ShowOnGirdView(dataGridView, "Select [MaGiaoVien],[HoLot],[TenGiaoVien],[HocHam],[HocVi] From giaovien");
+            Global.ShowOnGridView(dataGridView, "Select [MaGiaoVien],[HoLot],[TenGiaoVien],[HocHam],[HocVi] From giaovien");
         }
 
         private void btnShow_Click(object sender, EventArgs e)
@@ -107,6 +109,11 @@ namespace Exams_Scheduling_Manager
                     ShowAllTeachers();
                 }
             panel.Enabled = true;
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            IsModifyMode = false;
         }
     }
 }
