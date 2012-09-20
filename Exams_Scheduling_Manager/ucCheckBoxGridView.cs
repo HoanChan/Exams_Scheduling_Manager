@@ -11,6 +11,39 @@ namespace Exams_Scheduling_Manager
 {
     public partial class ucCheckBoxGridView : DataGridView
     {
+        DataGridViewCheckBoxColumn CheckBoxCollumn;
+        int TotalCheckBoxes = 0;
+        int TotalCheckedCheckBoxes = 0;
+        CheckBox HeaderCheckBox = null;
+        bool IsHeaderCheckBoxClicked = false;
+
+        public String CheckBoxCollumnName
+        {
+            get { return "Checked"; }
+        }
+
+        public IEnumerable<DataGridViewRow> CheckedRows()
+        {
+            foreach (DataGridViewRow Row in Rows)
+            {
+                if ((bool)((DataGridViewCheckBoxCell)Row.Cells[CheckBoxCollumnName]).Value == true)
+                {
+                    yield return Row;
+                }
+            }
+        }
+
+        public IEnumerable<DataGridViewRow> UnCheckedRows()
+        {
+            foreach (DataGridViewRow Row in Rows)
+            {
+                if ((bool)((DataGridViewCheckBoxCell)Row.Cells[CheckBoxCollumnName]).Value != true)
+                {
+                    yield return Row;
+                }
+            }
+        }
+
         public void BeginUpdate()
         {
             AddHeaderCheckBox();
@@ -21,7 +54,7 @@ namespace Exams_Scheduling_Manager
             CellPainting += new DataGridViewCellPaintingEventHandler(dataGridView_CellPainting);
             CellBeginEdit += new DataGridViewCellCancelEventHandler(TheCellBeginEdit);
             CheckBoxCollumn = new DataGridViewCheckBoxColumn();
-            CheckBoxCollumn.Name = "chkBxSelect";
+            CheckBoxCollumn.Name = CheckBoxCollumnName;
             CheckBoxCollumn.HeaderText = "";
             Columns.Add(CheckBoxCollumn);
         }
@@ -31,7 +64,7 @@ namespace Exams_Scheduling_Manager
             //TotalCheckBoxes = RowCount;
             //TotalCheckedCheckBoxes = 0;
             foreach (DataGridViewRow Row in Rows)
-                ((DataGridViewCheckBoxCell)Row.Cells["chkBxSelect"]).Value = true;
+                ((DataGridViewCheckBoxCell)Row.Cells[CheckBoxCollumnName]).Value = true;
 
             RefreshEdit();
             TotalCheckBoxes = RowCount;
@@ -40,15 +73,9 @@ namespace Exams_Scheduling_Manager
         private void TheCellBeginEdit(object sender, DataGridViewCellCancelEventArgs e) {
           if (e.ColumnIndex != 0) e.Cancel = true;
         }
-
-        DataGridViewCheckBoxColumn CheckBoxCollumn;
-        int TotalCheckBoxes = 0;
-        int TotalCheckedCheckBoxes = 0;
-        CheckBox HeaderCheckBox = null;
-        bool IsHeaderCheckBoxClicked = false;
         private void dataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (!IsHeaderCheckBoxClicked && this[e.ColumnIndex, e.RowIndex] == this["chkBxSelect", e.RowIndex])
+            if (!IsHeaderCheckBoxClicked && this[e.ColumnIndex, e.RowIndex] == this[CheckBoxCollumnName, e.RowIndex])
                 RowCheckBoxClick((DataGridViewCheckBoxCell)this[e.ColumnIndex, e.RowIndex]);
         }
 
@@ -107,7 +134,7 @@ namespace Exams_Scheduling_Manager
                 HeaderCheckBox.CheckState = CheckState.Unchecked;
             }
             foreach (DataGridViewRow Row in Rows)
-                ((DataGridViewCheckBoxCell)Row.Cells["chkBxSelect"]).Value = HCheckBox.Checked;
+                ((DataGridViewCheckBoxCell)Row.Cells[CheckBoxCollumnName]).Value = HCheckBox.Checked;
 
             RefreshEdit();
 
