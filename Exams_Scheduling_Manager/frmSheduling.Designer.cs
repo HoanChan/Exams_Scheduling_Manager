@@ -34,8 +34,10 @@
             this.tabPageStep2 = new System.Windows.Forms.TabPage();
             this.tabPageStep3 = new System.Windows.Forms.TabPage();
             this.tabPageStep4 = new System.Windows.Forms.TabPage();
+            this.ucStep_SelectStudents1 = new Exams_Scheduling_Manager.ucStep_SelectStudents();
             this.tabStep.SuspendLayout();
             this.tabPageStep1.SuspendLayout();
+            this.tabPageStep2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabStep
@@ -72,6 +74,7 @@
             // 
             // tabPageStep2
             // 
+            this.tabPageStep2.Controls.Add(this.ucStep_SelectStudents1);
             this.tabPageStep2.Location = new System.Drawing.Point(4, 22);
             this.tabPageStep2.Name = "tabPageStep2";
             this.tabPageStep2.Padding = new System.Windows.Forms.Padding(3);
@@ -98,6 +101,14 @@
             this.tabPageStep4.Text = "Xếp Lịch";
             this.tabPageStep4.UseVisualStyleBackColor = true;
             // 
+            // ucStep_SelectStudents1
+            // 
+            this.ucStep_SelectStudents1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucStep_SelectStudents1.Location = new System.Drawing.Point(3, 3);
+            this.ucStep_SelectStudents1.Name = "ucStep_SelectStudents1";
+            this.ucStep_SelectStudents1.Size = new System.Drawing.Size(740, 464);
+            this.ucStep_SelectStudents1.TabIndex = 0;
+            // 
             // frmSheduling
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -109,6 +120,7 @@
             this.Text = "frmSheduling";
             this.tabStep.ResumeLayout(false);
             this.tabPageStep1.ResumeLayout(false);
+            this.tabPageStep2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -121,5 +133,6 @@
         private System.Windows.Forms.TabPage tabPageStep3;
         private System.Windows.Forms.TabPage tabPageStep4;
         private ucStep_SelectSubjects ucStep_SelectSubjects1;
+        private ucStep_SelectStudents ucStep_SelectStudents1;
     }
 }
