@@ -14,7 +14,7 @@ namespace Exams_Scheduling_Manager
         DataGridViewCheckBoxColumn CheckBoxCollumn;
         int TotalCheckBoxes = 0;
         int TotalCheckedCheckBoxes = 0;
-        CheckBox HeaderCheckBox = null;
+        public CheckBox HeaderCheckBox = null;
         bool IsHeaderCheckBoxClicked = false;
 
         public String CheckBoxCollumnName
@@ -43,25 +43,25 @@ namespace Exams_Scheduling_Manager
                 }
             }
         }
-
-        public void BeginUpdate()
+        
+        public ucCheckBoxGridView()
         {
-            if (HeaderCheckBox == null)
-            {
-                AddHeaderCheckBox();
-                HeaderCheckBox.KeyUp += new KeyEventHandler(HeaderCheckBox_KeyUp);
-                HeaderCheckBox.MouseClick += new MouseEventHandler(HeaderCheckBox_MouseClick);
-                CellValueChanged += new DataGridViewCellEventHandler(dataGridView_CellValueChanged);
-                CurrentCellDirtyStateChanged += new EventHandler(dataGridView_CurrentCellDirtyStateChanged);
-                CellPainting += new DataGridViewCellPaintingEventHandler(dataGridView_CellPainting);
-                CellBeginEdit += new DataGridViewCellCancelEventHandler(TheCellBeginEdit);
-                CheckBoxCollumn = new DataGridViewCheckBoxColumn();
-                CheckBoxCollumn.Name = CheckBoxCollumnName;
-                CheckBoxCollumn.HeaderText = "";
-                Columns.Add(CheckBoxCollumn);
-            }
+            AddHeaderCheckBox();
+            HeaderCheckBox.KeyUp += new KeyEventHandler(HeaderCheckBox_KeyUp);
+            HeaderCheckBox.MouseClick += new MouseEventHandler(HeaderCheckBox_MouseClick);
+            CellValueChanged += new DataGridViewCellEventHandler(dataGridView_CellValueChanged);
+            CurrentCellDirtyStateChanged += new EventHandler(dataGridView_CurrentCellDirtyStateChanged);
+            CellPainting += new DataGridViewCellPaintingEventHandler(dataGridView_CellPainting);
+            CellBeginEdit += new DataGridViewCellCancelEventHandler(dataGridView_CellBeginEdit);
+            DataBindingComplete += new DataGridViewBindingCompleteEventHandler(dataGridView_DataBindingComplete);
+            CheckBoxCollumn = new DataGridViewCheckBoxColumn();
+            CheckBoxCollumn.Name = CheckBoxCollumnName;
+            CheckBoxCollumn.HeaderText = "";
+            Columns.Add(CheckBoxCollumn);
+            AllowUserToAddRows = false;
         }
-        public void EndUpdate()
+
+        private void dataGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             ReadOnly = false;
             foreach (DataGridViewRow Row in Rows)
@@ -70,7 +70,9 @@ namespace Exams_Scheduling_Manager
             TotalCheckBoxes = RowCount;
             TotalCheckedCheckBoxes = RowCount;
         }
-        private void TheCellBeginEdit(object sender, DataGridViewCellCancelEventArgs e) {
+
+        private void dataGridView_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
           if (e.ColumnIndex != 0) e.Cancel = true;
         }
         private void dataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)

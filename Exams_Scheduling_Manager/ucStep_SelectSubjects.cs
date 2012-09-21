@@ -64,7 +64,7 @@ namespace Exams_Scheduling_Manager
 
         private void btnShow_Click(object sender, EventArgs e)
         {
-            dataGridView.BeginUpdate();
+            //dataGridView.BeginUpdate();
             String Query = "select distinct monhoc.MaMonHoc, monhoc.TenMonHoc from monhoc, pdkmh, bomon, khoa"
                             + " where monhoc.MaMonHoc = pdkmh.MaMonHoc and bomon.MaBoMon = monhoc.BoMonQL and khoa.MaKhoa = bomon.KhoaQL";
             if (cboFaculty.Enabled)
@@ -82,7 +82,7 @@ namespace Exams_Scheduling_Manager
             {
                 Global.ShowOnGridView(dataGridView, Query + " and bomon.MaBoMon = '" + ((SQLItem)cboSubject.SelectedItem).ID + "'");
             }
-            dataGridView.EndUpdate();
+            //dataGridView.EndUpdate();
             foreach (DataGridViewRow Row in dataGridView.Rows)
             {
                 if (Global.IgnoreSubject.Contains(Row.Cells["MaMonHoc"].Value))
