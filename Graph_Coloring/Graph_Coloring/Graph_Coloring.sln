@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graph_Coloring", "Graph_Coloring\Graph_Coloring.csproj", "{3D905949-6CAC-4909-B8E8-4D88EF4D4550}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3D905949-6CAC-4909-B8E8-4D88EF4D4550}.Debug|x86.ActiveCfg = Debug|x86
+		{3D905949-6CAC-4909-B8E8-4D88EF4D4550}.Debug|x86.Build.0 = Debug|x86
+		{3D905949-6CAC-4909-B8E8-4D88EF4D4550}.Release|x86.ActiveCfg = Release|x86
+		{3D905949-6CAC-4909-B8E8-4D88EF4D4550}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
