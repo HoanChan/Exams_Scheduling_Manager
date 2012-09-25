@@ -35,6 +35,7 @@ namespace Exams_Scheduling_Manager
     public class Global
     {
         public static List<String> IgnoreSubject = new List<String>();
+        public static List<String> IgoreStudents = new List<string>();
         public static SqlConnection SQLConnection;
         public static bool Connect(String ConnectionString)
         {

@@ -29,7 +29,7 @@ namespace Exams_Scheduling_Manager
                 {
                     cboFaculty.Items.Add(new SQLItem(dRow["MaKhoa"], dRow["TenKhoa"]));
                 }
-      //          cboFaculty.Items.Add(new SQLItem(null, "?"));
+                //          cboFaculty.Items.Add(new SQLItem(null, "?"));
                 cboFaculty.SelectedIndex = 0;
             }
         }
@@ -51,7 +51,7 @@ namespace Exams_Scheduling_Manager
                 }
 
             }
-            
+
             cboSubject.Items.Add(new SQLItem(null, "?"));
             cboSubject.SelectedIndex = 0;
         }
@@ -85,7 +85,31 @@ namespace Exams_Scheduling_Manager
 
         private void btnShow_Click(object sender, EventArgs e)
         {
-            
+            panel1.Enabled = false;
+            String Query = "select distinct [sinhvien].[MaSinhVien], [sinhvien].[Ho], [sinhvien].[Ten], [sinhvien].[NgaySinh], [sinhvien].[lop] from monhoc, pdkmh, bomon, khoa, lop, sinhvien, khoi"
+                            + " where monhoc.MaMonHoc = pdkmh.MaMonHoc and bomon.MaBoMon = monhoc.BoMonQL and khoa.MaKhoa = bomon.KhoaQL and lop = malop and lop.MaKhoi = khoi.MaKhoi and khoi.KhoaQL = MaKhoa and monhoc.MaMonHoc = '" + ((SQLItem)cboMon.SelectedItem).ID.ToString() + "'";
+
+            Global.ShowOnGridView(dataGridView, Query);
+
+            foreach (DataGridViewRow Row in dataGridView.Rows)
+            {
+                if (Global.IgoreStudents.Contains(Row.Cells["MaSinhVien"].Value))
+                    Row.Cells[dataGridView.CheckBoxCollumnName].Value = false;
+            }
+
+            panel1.Enabled = true;
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            foreach (String StudentID in dataGridView.UnCheckedRows("MaSinhVien"))
+            {
+                if (!Global.IgoreStudents.Contains(StudentID))
+                {
+                    Global.IgoreStudents.Add(StudentID);
+                }
+            }
+            MessageBox.Show("Đã lưu xong!", "Thông Báo");
         }
     }
 }
