@@ -118,6 +118,7 @@ namespace Graph_Coloring
         {
             int tmp_y = NN[0];
             int temp, max = 0;
+            /*
             for (int i = 0; i < NNCount; i++)
             {
                 temp = 0;
@@ -129,7 +130,20 @@ namespace Graph_Coloring
                     max = temp;
                     tmp_y = NN[i];
                 }
-            }
+            }*/
+            for (int i = 0; i < AdjacencyMatrixSize; i++)
+                if (color[i] == 0)
+                {
+                    temp = 0;
+                    for (int j = 0; j < NNCount; j++)
+                        if (AdjacencyMatrix[i, NN[j]] == 1)
+                            temp++;
+                    if (temp > max)
+                    {
+                        max = temp;
+                        tmp_y = i;
+                    }
+                }
             return tmp_y;
         }
         // processing function
