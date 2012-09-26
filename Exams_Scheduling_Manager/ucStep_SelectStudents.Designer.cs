@@ -29,23 +29,27 @@
         private void InitializeComponent()
         {
             this.dataGridView = new Exams_Scheduling_Manager.ucCheckBoxGridView();
+            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSave = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.lblFaculty = new System.Windows.Forms.Label();
             this.lblSubject = new System.Windows.Forms.Label();
+            this.cboMon = new System.Windows.Forms.ComboBox();
             this.cboFaculty = new System.Windows.Forms.ComboBox();
             this.cboSubject = new System.Windows.Forms.ComboBox();
             this.btnShow = new System.Windows.Forms.Button();
-            this.cboMon = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView
             // 
+            this.dataGridView.AllowUserToAddRows = false;
             this.dataGridView.AllowUserToOrderColumns = true;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewCheckBoxColumn1});
             this.dataGridView.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataGridView.Location = new System.Drawing.Point(0, 0);
             this.dataGridView.Name = "dataGridView";
@@ -53,6 +57,12 @@
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView.Size = new System.Drawing.Size(745, 391);
             this.dataGridView.TabIndex = 5;
+            // 
+            // dataGridViewCheckBoxColumn1
+            // 
+            this.dataGridViewCheckBoxColumn1.HeaderText = "";
+            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            this.dataGridViewCheckBoxColumn1.ReadOnly = true;
             // 
             // panel1
             // 
@@ -78,6 +88,16 @@
             this.btnSave.TabIndex = 10;
             this.btnSave.Text = "Lưu lựa chọn";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(282, 32);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(31, 13);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Môn:";
             // 
             // lblFaculty
             // 
@@ -96,6 +116,14 @@
             this.lblSubject.Size = new System.Drawing.Size(46, 13);
             this.lblSubject.TabIndex = 8;
             this.lblSubject.Text = "Bộ môn:";
+            // 
+            // cboMon
+            // 
+            this.cboMon.FormattingEnabled = true;
+            this.cboMon.Location = new System.Drawing.Point(330, 24);
+            this.cboMon.Name = "cboMon";
+            this.cboMon.Size = new System.Drawing.Size(189, 21);
+            this.cboMon.TabIndex = 7;
             // 
             // cboFaculty
             // 
@@ -125,23 +153,6 @@
             this.btnShow.UseVisualStyleBackColor = true;
             this.btnShow.Click += new System.EventHandler(this.btnShow_Click);
             // 
-            // cboMon
-            // 
-            this.cboMon.FormattingEnabled = true;
-            this.cboMon.Location = new System.Drawing.Point(330, 24);
-            this.cboMon.Name = "cboMon";
-            this.cboMon.Size = new System.Drawing.Size(189, 21);
-            this.cboMon.TabIndex = 7;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(282, 32);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(31, 13);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Môn:";
-            // 
             // ucStep_SelectStudents
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -170,5 +181,6 @@
         private System.Windows.Forms.Button btnShow;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cboMon;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
     }
 }
