@@ -116,7 +116,7 @@ namespace Graph_Coloring
         // find the vertex in NN of which degree is maximum
         static int MaxDegreeInNN()
         {
-            int tmp_y = NN[0];
+            int tmp_y = NN[0]; 
             int temp, max = 0;
             for (int i = 0; i < NNCount; i++)
             {
