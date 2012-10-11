@@ -39,7 +39,7 @@ namespace Graph_Coloring
                 color[i] = 0;
                 degree[i] = 0;
                 for (int j = 0; j < AdjacencyMatrixSize; j++)
-                    if (AdjacencyMatrix[i, j] != 0) //if (AdjacencyMatrix[i, j] == 1)
+                    if (AdjacencyMatrix[i, j] != 0)
                         degree[i]++;
             }
             NNCount = 0;
@@ -49,7 +49,7 @@ namespace Graph_Coloring
         static int MaxDegreeVertex()
         {
             int max = -1;
-            int max_i = 0;
+            int max_i = -1;
             for (int i = 0; i < AdjacencyMatrixSize; i++)
                 if (color[i] == 0)
                     if (degree[i] > max)
@@ -73,17 +73,29 @@ namespace Graph_Coloring
             for (int i = 0; i < AdjacencyMatrixSize; i++)
                 if (color[i] == 0)
                 {
-                    NN[NNCount] = i;
-                    NNCount++;
+                    NN[NNCount++] = i;
+                    //   NNCount++;
                 }
+
             for (int i = 0; i < AdjacencyMatrixSize; i++)
                 if (color[i] == ColorNumber)
                     for (int j = 0; j < NNCount; j++)
-                        while (AdjacencyMatrix[i, NN[j]] != 0 && NNCount > 0) //while (AdjacencyMatrix[i, NN[j]] == 1 && NNCount > 0)
+                        //  while (AdjacencyMatrix[i, NN[j]] != 0 && NNCount > 0) 
+                        if (AdjacencyMatrix[i, NN[j]] != 0)
                         {
-                            NN[j] = NN[NNCount - 1];
-                            NNCount--;
+                            color[NN[j]] = -1;
+                            //     NN[j] = NN[NNCount-1];
+                            //          NNCount--;
                         }
+
+            NNCount = 0;
+            for (int i = 0; i < AdjacencyMatrixSize; i++)
+                if (color[i] == 0)
+                    NN[NNCount++] = i;
+                else
+                    if (color[i] == -1)
+                        color[i] = 0;
+
         }
         // this function will find suitable y from NN
         static int FindSuitableY(int ColorNumber, ref int VerticesInCommon)
@@ -100,7 +112,7 @@ namespace Graph_Coloring
                     if (color[x] == ColorNumber)
                         for (int k = 0; k < AdjacencyMatrixSize; k++)
                             if (color[k] == 0 && scanned[k] == 0)
-                                if (AdjacencyMatrix[x, k] != 0 && AdjacencyMatrix[tmp_y, k] != 0)//if (AdjacencyMatrix[x, k] == 1 && AdjacencyMatrix[tmp_y, k] == 1)
+                                if (AdjacencyMatrix[x, k] != 0 && AdjacencyMatrix[tmp_y, k] != 0)
                                 {
                                     temp++;
                                     scanned[k] = 1;
@@ -116,13 +128,14 @@ namespace Graph_Coloring
         // find the vertex in NN of which degree is maximum
         static int MaxDegreeInNN()
         {
-            int tmp_y = NN[0]; 
+            int tmp_y = NN[0];
             int temp, max = 0;
+
             for (int i = 0; i < NNCount; i++)
             {
                 temp = 0;
                 for (int j = 0; j < AdjacencyMatrixSize; j++)
-                    if (color[NN[j]] == 0 && AdjacencyMatrix[i, NN[j]] != 0) //if (color[NN[j]] == 0 && AdjacencyMatrix[i, NN[j]] == 1)
+                    if (color[j] == 0 && AdjacencyMatrix[j, NN[i]] != 0)
                         temp++;
                 if (temp > max)
                 {
@@ -141,6 +154,8 @@ namespace Graph_Coloring
             while (unprocessed > 0)
             {
                 x = MaxDegreeVertex();
+                if (x < 0)
+                    break;
                 ColorNumber++;
                 color[x] = ColorNumber;
                 unprocessed--;
